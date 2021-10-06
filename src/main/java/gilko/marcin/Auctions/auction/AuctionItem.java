@@ -1,6 +1,10 @@
 package gilko.marcin.Auctions.auction;
 
-public class AuctionItem {
+import gilko.marcin.Auctions.participant.Observator;
+import gilko.marcin.Auctions.participant.Participant;
+import java.util.Timer;
+
+public class AuctionItem implements Auction{
 	private static int count =0;
 	
 	public int id;
@@ -10,6 +14,7 @@ public class AuctionItem {
 	public double min_price;
 	public double time;
 	public double curr_price;
+	public Timer timer;
 	
 	public AuctionItem() {};
 	public AuctionItem(String desciption, int quantity, double start_price,
@@ -57,6 +62,34 @@ public class AuctionItem {
 	public void setCurr_price(double curr_price) {
 		this.curr_price = curr_price;
 	}
+
+	@Override
+	public void startAuction() {
+		timer = new Timer();
+	
+		
+	}
+	@Override
+	public void stopAuction() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void notifyObserver() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void registerObserver(Observator o) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void unregisterObserver(Observator o) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	
 	
 	
