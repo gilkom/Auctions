@@ -62,6 +62,7 @@ public class AuctionItem implements Auction{
 	public void setCurr_price(double curr_price) {
 		this.curr_price = curr_price;
 	}
+	
 
 	@Override
 	public void startAuction() {
@@ -88,6 +89,12 @@ public class AuctionItem implements Auction{
 	public void unregisterObserver(Observator o) {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public String toString() {
+		return "AuctionItem [id=" + id + ", description=" + description + ", quantity=" + quantity + ", start_price="
+				+ start_price + ", min_price=" + min_price + ", time=" + time + ", curr_price=" + curr_price
+				+ ", timer=" + timer + "]";
 	}
 	
 	
