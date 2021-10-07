@@ -12,18 +12,19 @@ public class AuctionItem implements Auction{
 	public int quantity;
 	public double start_price;
 	public double min_price;
-	public double time;
+	public int time;
 	public double curr_price;
-	public Timer timer;
+	public int time_left;
 	
 	public AuctionItem() {};
 	public AuctionItem(String desciption, int quantity, double start_price,
-					double min_price, double time, double curr_price) {
+					double min_price, int time, double curr_price) {
 		this.id = (++count);
 		this.description = desciption;
 		this.quantity = quantity;
 		this.start_price = start_price;
 		this.min_price = min_price;
+		this.time = time;
 		this.curr_price = curr_price;
 	}
 	public String getDescription() {
@@ -53,7 +54,7 @@ public class AuctionItem implements Auction{
 	public double getTime() {
 		return time;
 	}
-	public void setTime(double time) {
+	public void setTime(int time) {
 		this.time = time;
 	}
 	public double getCurr_price() {
@@ -66,8 +67,17 @@ public class AuctionItem implements Auction{
 
 	@Override
 	public void startAuction() {
-		timer = new Timer();
-	
+		long current = System.currentTimeMillis();
+		System.out.println("time_left=" + time);
+		time_left = time;
+		while(time_left >=0) {
+			if(System.currentTimeMillis()- current > 1000) {
+				System.out.println("id = " + id + ":" +time_left--);
+				
+				current = System.currentTimeMillis();
+			}
+		}
+	System.out.println("Bam");
 		
 	}
 	@Override
@@ -94,7 +104,7 @@ public class AuctionItem implements Auction{
 	public String toString() {
 		return "AuctionItem [id=" + id + ", description=" + description + ", quantity=" + quantity + ", start_price="
 				+ start_price + ", min_price=" + min_price + ", time=" + time + ", curr_price=" + curr_price
-				+ ", timer=" + timer + "]";
+				+"]";
 	}
 	
 	
