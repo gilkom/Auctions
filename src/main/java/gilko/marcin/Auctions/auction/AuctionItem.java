@@ -3,6 +3,7 @@ package gilko.marcin.Auctions.auction;
 import gilko.marcin.Auctions.participant.Observator;
 import gilko.marcin.Auctions.participant.Participant;
 import java.util.Timer;
+import java.util.TimerTask;
 
 public class AuctionItem implements Auction{
 	private static int count =0;
@@ -67,7 +68,7 @@ public class AuctionItem implements Auction{
 
 	@Override
 	public void startAuction() {
-		long current = System.currentTimeMillis();
+		/*long current = System.currentTimeMillis();
 		System.out.println("time_left=" + time);
 		time_left = time;
 		while(time_left >=0) {
@@ -78,11 +79,16 @@ public class AuctionItem implements Auction{
 			}
 		}
 	System.out.println("Bam");
-		
+		Timer timer = new Timer();
+		TimerTask task = new Time();
+		System.out.println("id = " + id);
+		timer.schedule(task, 50L, 60L);
+		System.out.println("id = " + id);*/
+		System.out.println("startAuction");
 	}
 	@Override
 	public void stopAuction() {
-		// TODO Auto-generated method stub
+		System.out.println("stopAuction");
 		
 	}
 	@Override
