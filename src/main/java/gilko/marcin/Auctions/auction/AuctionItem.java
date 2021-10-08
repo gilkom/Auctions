@@ -23,6 +23,7 @@ public class AuctionItem implements Auction{
 	public AuctionItem() {};
 	public AuctionItem(String desciption, int quantity, double start_price,
 					double min_price, int time, double curr_price) {
+		observers = new ArrayList<Observator>();
 		this.id = (++count);
 		this.description = desciption;
 		this.quantity = quantity;
