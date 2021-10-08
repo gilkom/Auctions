@@ -18,6 +18,7 @@ public class AuctionsApplication {
 		System.out.println(rower2.toString());
 		rower.startAuction();
 		rower1.startAuction();
+		rower.stopAuction();
 		}
 
 }

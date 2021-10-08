@@ -2,20 +2,23 @@ package gilko.marcin.Auctions.auction;
 
 import gilko.marcin.Auctions.participant.Observator;
 import gilko.marcin.Auctions.participant.Participant;
+
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class AuctionItem implements Auction{
 	private static int count =0;
 	
-	public int id;
-	public String description;
-	public int quantity;
-	public double start_price;
-	public double min_price;
-	public int time;
-	public double curr_price;
-	public int time_left;
+	private ArrayList<Observator> observers;
+	private int id;
+	private String description;
+	private int quantity;
+	private double start_price;
+	private double min_price;
+	private int time;
+	private double curr_price;
+	private int time_left;
 	
 	public AuctionItem() {};
 	public AuctionItem(String desciption, int quantity, double start_price,
@@ -98,13 +101,16 @@ public class AuctionItem implements Auction{
 	}
 	@Override
 	public void registerObserver(Observator o) {
-		// TODO Auto-generated method stub
-		
+		observers.add(o);
+		System.out.println("dodano obserwatora: " + o);
 	}
 	@Override
 	public void unregisterObserver(Observator o) {
-		// TODO Auto-generated method stub
-		
+		int i = observers.indexOf(o);
+		if(i >=0) {
+			observers.remove(i);
+		}
+		System.out.println("usunięto obserwatora: " + o);
 	}
 	@Override
 	public String toString() {
