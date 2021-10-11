@@ -24,6 +24,9 @@ public class AuctionsApplication {
 		rower.stopAuction();
 		
 		rower.registerObserver(part1);
+		rower.bid(45, part1);
+		System.out.println("-----");
+		part1.bid(55,rower2);
 		}
 
 }

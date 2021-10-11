@@ -125,8 +125,8 @@ public class AuctionItem implements Auction{
 		if(curr_price < new_price) {
 			curr_price = new_price;
 			last_bidder = bidder;
+			System.out.println("podano nową cenę: " + curr_price + " przez: " + last_bidder);
 		}
-		
 		notifyObserver();
 	}
 	@Override

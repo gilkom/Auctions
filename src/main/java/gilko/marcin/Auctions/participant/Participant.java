@@ -1,10 +1,13 @@
 package gilko.marcin.Auctions.participant;
 
+import gilko.marcin.Auctions.auction.Auction;
+
 public class Participant implements Observator{
 	
 	private String firstName;
 	private String secondName;
 	private String mail;
+	private Auction AuctionItem;
 	
 	public Participant() {}
 	
@@ -37,10 +40,17 @@ public class Participant implements Observator{
 	public String toString() {
 		return "Participant [firstName=" + firstName + ", secondName=" + secondName + ", mail=" + mail + "]";
 	}
+	
 
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
+		
+	}
+	public void bid(double new_price, Auction AuctionItem) {
+		AuctionItem.registerObserver(this);
+		AuctionItem.bid(new_price, this);
+		
 		
 	}
 
