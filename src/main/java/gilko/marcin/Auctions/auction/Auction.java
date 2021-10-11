@@ -9,5 +9,5 @@ public interface Auction {
 	void notifyObserver();
 	void registerObserver(Observator o);
 	void unregisterObserver(Observator o);
-	void bid(double new_price);
+	void bid(double new_price, Participant bidder);
 }

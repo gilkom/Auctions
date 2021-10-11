@@ -19,6 +19,7 @@ public class AuctionItem implements Auction{
 	private int time;
 	private double curr_price;
 	private int time_left;
+	private Participant last_bidder;
 	
 	public AuctionItem() {};
 	public AuctionItem(String desciption, int quantity, double start_price,
@@ -31,6 +32,7 @@ public class AuctionItem implements Auction{
 		this.min_price = min_price;
 		this.time = time;
 		this.curr_price = curr_price;
+		
 	}
 	public String getDescription() {
 		return description;
@@ -119,10 +121,12 @@ public class AuctionItem implements Auction{
 		System.out.println("usunięto obserwatora: " + o);
 	}
 	@Override
-	public void bid(double new_price) {
+	public void bid(double new_price, Participant bidder) {
 		if(curr_price < new_price) {
 			curr_price = new_price;
+			last_bidder = bidder;
 		}
+		
 		notifyObserver();
 	}
 	@Override
