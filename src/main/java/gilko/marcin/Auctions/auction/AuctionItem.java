@@ -89,15 +89,20 @@ public class AuctionItem implements Auction{
 		timer.schedule(task, 50L, 60L);
 		System.out.println("id = " + id);*/
 		System.out.println("startAuction");
+		notifyObserver();
 	}
 	@Override
 	public void stopAuction() {
 		System.out.println("stopAuction");
+		notifyObserver();
 		
 	}
 	@Override
 	public void notifyObserver() {
-		// TODO Auto-generated method stub
+		for(int i = 0; i < observers.size(); i++) {
+			Observator Obs = observers.get(i);
+			Obs.update();
+		}
 		
 	}
 	@Override
@@ -112,6 +117,13 @@ public class AuctionItem implements Auction{
 			observers.remove(i);
 		}
 		System.out.println("usunięto obserwatora: " + o);
+	}
+	@Override
+	public void bid(double new_price) {
+		if(curr_price < new_price) {
+			curr_price = new_price;
+		}
+		notifyObserver();
 	}
 	@Override
 	public String toString() {
