@@ -16,6 +16,7 @@ public class AuctionsApplication {
 		AuctionItem rower2 = new AuctionItem("Super rower2 costam", 1, 40.00, 50.00, 6, 40.00);
 		
 		Participant part1 = new Participant("Jan", "Kowalski", "kowalski@gmail.com");
+		Participant part2 = new Participant("Andrzej", "Nowak", "nowak@gmail.com");
 		System.out.println(rower.toString());
 		System.out.println(rower1.toString());
 		System.out.println(rower2.toString());
@@ -23,10 +24,11 @@ public class AuctionsApplication {
 		rower1.startAuction();
 		rower.stopAuction();
 		
-		rower.registerObserver(part1);
-		rower.bid(45, part1);
+
 		System.out.println("-----");
 		part1.bid(55,rower2);
+		part2.bid(56, rower2);
+		part1.bid(45, rower);
 		}
 
 }

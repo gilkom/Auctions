@@ -34,6 +34,10 @@ public class AuctionItem implements Auction{
 		this.curr_price = curr_price;
 		
 	}
+	public int getId() {
+		return id;
+	}
+	
 	public String getDescription() {
 		return description;
 	}
@@ -101,9 +105,11 @@ public class AuctionItem implements Auction{
 	}
 	@Override
 	public void notifyObserver() {
+		System.out.println(" - ");
+		System.out.println("Powiadomienia:");
 		for(int i = 0; i < observers.size(); i++) {
 			Observator Obs = observers.get(i);
-			Obs.update();
+			Obs.update(curr_price,last_bidder);
 		}
 		
 	}
