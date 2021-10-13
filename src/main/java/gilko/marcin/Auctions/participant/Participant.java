@@ -1,5 +1,8 @@
 package gilko.marcin.Auctions.participant;
 
+import java.util.*;
+
+
 import gilko.marcin.Auctions.auction.Auction;
 import gilko.marcin.Auctions.auction.AuctionItem;
 
@@ -9,6 +12,7 @@ public class Participant implements Observator{
 	private String secondName;
 	private String mail;
 	private AuctionItem auIt;
+	private Set<AuctionItem> myAuctions;
 	
 	public Participant() {}
 	
@@ -17,6 +21,7 @@ public class Participant implements Observator{
 		this.firstName = firstName;
 		this.secondName = secondName;
 		this.mail = mail;
+		setMyAuctions(new HashSet<>());
 	}
 	
 	public String getFirstName() {
@@ -37,6 +42,14 @@ public class Participant implements Observator{
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
+	
+	public Set<AuctionItem> getMyAuctions() {
+		return myAuctions;
+	}
+
+	public void setMyAuctions(Set<AuctionItem> myAuctions) {
+		this.myAuctions = myAuctions;
+	}
 	@Override
 	public String toString() {
 		return "Participant [firstName=" + firstName + ", secondName=" + secondName + ", mail=" + mail + "] "
@@ -53,11 +66,16 @@ public class Participant implements Observator{
 		
 	}
 	public void bid(double new_price, AuctionItem AuctionItem) {
+		myAuctions.add(AuctionItem);
 		this.auIt = AuctionItem;
 		AuctionItem.registerObserver(this);
-		AuctionItem.bid(new_price, this);
-		
+		AuctionItem.bid(new_price, this);	
+	}
+	
+	public void stopObserve() {
 		
 	}
+
+
 
 }
