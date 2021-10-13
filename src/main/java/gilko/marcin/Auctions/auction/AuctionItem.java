@@ -22,6 +22,7 @@ public class AuctionItem implements Auction{
 	private Participant last_bidder;
 	
 	public AuctionItem() {};
+	
 	public AuctionItem(String desciption, int quantity, double start_price,
 					double min_price, int time, double curr_price) {
 		observers = new ArrayList<Observator>();
@@ -74,7 +75,12 @@ public class AuctionItem implements Auction{
 	public void setCurr_price(double curr_price) {
 		this.curr_price = curr_price;
 	}
-	
+	public Participant getLast_bidder() {
+		return last_bidder;
+	}
+	public void setLast_bidder(Participant last_bidder) {
+		this.last_bidder = last_bidder;
+	}
 
 	@Override
 	public void startAuction() {
