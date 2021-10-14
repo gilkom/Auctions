@@ -21,6 +21,8 @@ public class AuctionItem implements Auction{
 	private int time_left;
 	private Participant last_bidder;
 	
+	private Timer timer;
+	
 	public AuctionItem() {};
 	
 	public AuctionItem(String desciption, int quantity, double start_price,
@@ -33,7 +35,8 @@ public class AuctionItem implements Auction{
 		this.min_price = min_price;
 		this.time = time;
 		this.curr_price = curr_price;
-		
+		this.time_left = time;	
+		this.timer = new Timer();
 	}
 	public int getId() {
 		return id;
@@ -84,7 +87,7 @@ public class AuctionItem implements Auction{
 
 	@Override
 	public void startAuction() {
-		/*long current = System.currentTimeMillis();
+		long current = System.currentTimeMillis();
 		System.out.println("time_left=" + time);
 		time_left = time;
 		while(time_left >=0) {
@@ -95,6 +98,7 @@ public class AuctionItem implements Auction{
 			}
 		}
 	System.out.println("Bam");
+		/*
 		Timer timer = new Timer();
 		TimerTask task = new Time();
 		System.out.println("id = " + id);
