@@ -18,7 +18,7 @@ public class AuctionItem implements Auction{
 	private double min_price;
 	private int time;
 	private double curr_price;
-	private int time_left;
+	private long start_time;
 	private Participant last_bidder;
 	
 	private Timer timer;
@@ -35,7 +35,7 @@ public class AuctionItem implements Auction{
 		this.min_price = min_price;
 		this.time = time;
 		this.curr_price = curr_price;
-		this.time_left = time;	
+		this.start_time = 0;	
 		this.timer = new Timer();
 	}
 	public int getId() {
@@ -88,15 +88,17 @@ public class AuctionItem implements Auction{
 	@Override
 	public void startAuction() {
 		long current = System.currentTimeMillis();
-		System.out.println("time_left=" + time);
-		time_left = time;
-		while(time_left >=0) {
+		start_time = System.currentTimeMillis();
+		System.out.println("start_time=" + time);
+		System.out.println("current: " + current);
+
+		/*while(time_left >=0) {
 			if(System.currentTimeMillis()- current > 1000) {
 				System.out.println("id = " + id + ":" +time_left--);
 				
 				current = System.currentTimeMillis();
 			}
-		}
+		}*/
 	System.out.println("Bam");
 		/*
 		Timer timer = new Timer();
@@ -113,6 +115,13 @@ public class AuctionItem implements Auction{
 		notifyObserver();
 		
 	}
+	@Override
+	public void checkTimeLeft() {
+		long current = System.currentTimeMillis();
+		long result = time-(current - start_time);
+		System.out.println("Time left to end the auction = " + result);
+	}
+	
 	@Override
 	public void notifyObserver() {
 		System.out.println(" - ");
@@ -145,6 +154,7 @@ public class AuctionItem implements Auction{
 		}
 		notifyObserver();
 	}
+	
 	@Override
 	public String toString() {
 		return "AuctionItem [id=" + id + ", description=" + description + ", quantity=" + quantity + ", start_price="

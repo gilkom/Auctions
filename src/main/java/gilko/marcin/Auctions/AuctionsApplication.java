@@ -24,6 +24,8 @@ public class AuctionsApplication {
 		rower.startAuction();
 		rower1.startAuction();
 		rower.stopAuction();
+		szafka.startAuction();
+		szafka.checkTimeLeft();
 		
 
 		System.out.println("-----");
@@ -44,6 +46,7 @@ public class AuctionsApplication {
 		rower2.stopAuction();
 		
 		rower.startAuction();
+		szafka.checkTimeLeft();
 		}
 
 }
