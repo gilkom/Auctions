@@ -92,20 +92,6 @@ public class AuctionItem implements Auction{
 		System.out.println("start_time=" + time);
 		System.out.println("current: " + current);
 
-		/*while(time_left >=0) {
-			if(System.currentTimeMillis()- current > 1000) {
-				System.out.println("id = " + id + ":" +time_left--);
-				
-				current = System.currentTimeMillis();
-			}
-		}*/
-	System.out.println("Bam");
-		/*
-		Timer timer = new Timer();
-		TimerTask task = new Time();
-		System.out.println("id = " + id);
-		timer.schedule(task, 50L, 60L);
-		System.out.println("id = " + id);*/
 		System.out.println("startAuction");
 		notifyObserver();
 	}
