@@ -58,10 +58,10 @@ public class Participant implements Observator{
 	
 
 	@Override
-	public void update(double curr_price, Participant last_bidder) {
+	public void update(double curr_price, Participant last_bidder, String notification) {
 		System.out.println("Message for " + toString());
 		System.out.println("AuctionId: " + auIt.getId() + ", curr_price: " + curr_price + ", last_bidder: " +
-						last_bidder);
+						last_bidder + ", notification: " + notification);
 		System.out.println("End of message");
 		
 	}

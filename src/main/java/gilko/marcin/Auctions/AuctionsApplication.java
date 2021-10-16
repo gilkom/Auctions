@@ -32,16 +32,17 @@ public class AuctionsApplication {
 		part1.bid(55,rower2);
 		part2.bid(56, rower2);
 		part1.bid(45, rower);
+		part1.bid(45, szafka);
 		
 		part1.showMyAuctions();
 		part2.showMyAuctions();
 		
-		part1.stopObserve(rower2);
+
 		
 		part1.showMyAuctions();
 		part2.showMyAuctions();
 		
-		part2.stopObserve(rower2);
+
 		
 		rower2.stopAuction();
 		

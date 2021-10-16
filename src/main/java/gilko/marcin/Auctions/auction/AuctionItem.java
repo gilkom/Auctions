@@ -18,8 +18,8 @@ public class AuctionItem implements Auction{
 	private double min_price;
 	private int time;
 	private double curr_price;
-	private long start_time;
 	private Participant last_bidder;
+	private int counter;
 	
 	private Timer timer;
 	private TimerTask task;
@@ -36,8 +36,8 @@ public class AuctionItem implements Auction{
 		this.min_price = min_price;
 		this.time = time;
 		this.curr_price = curr_price;
-		this.start_time = 0;	
 		this.timer = new Timer();
+		this.counter = 0;
 	}
 	public long getId() {
 		return id;
@@ -88,13 +88,25 @@ public class AuctionItem implements Auction{
 
 	@Override
 	public void startAuction() {
+		notifyObservator("Start Auction");
+		task = new TimerTask() {
+			@Override
+			public void run() {
+				long result = time-(counter);
+				System.out.println("Time left counter id: " + id + ", =" + result);
+				counter++;
+				if(counter >= time) {
+					System.out.println("end of " + id);
+					notifyObservator("End of auction: " + id);
+					cancel();
+				}
 
-			notifyObservator();
-			long current = System.currentTimeMillis();
-			start_time = System.currentTimeMillis();
+			}
+		};
+		timer = new Timer("Auction");
+		timer.schedule(task,time, 1000L);
+
 			System.out.println("start_time=" + time);
-			System.out.println("current: " + current);
-	
 			System.out.println("startAuction");
 
 
@@ -102,23 +114,22 @@ public class AuctionItem implements Auction{
 	@Override
 	public void stopAuction() {
 		System.out.println("stopAuction");
-		notifyObservator();
+		notifyObservator("Stop Auction");
 		
 	}
 	@Override
 	public void checkTimeLeft() {
-		long current = System.currentTimeMillis();
-		long result = time-(current - start_time);
+		long result = time-(counter);
 		System.out.println("Time left to end the auction = " + result);
 	}
 	
 	@Override
-	public void notifyObservator() {
+	public void notifyObservator(String notification) {
 		System.out.println(" - ");
 		System.out.println("Powiadomienia:");
 		for(int i = 0; i < observers.size(); i++) {
 			Observator Obs = observers.get(i);
-			Obs.update(curr_price,last_bidder);
+			Obs.update(curr_price,last_bidder, notification);
 		}
 		
 	}
@@ -142,7 +153,7 @@ public class AuctionItem implements Auction{
 			last_bidder = bidder;
 			System.out.println("podano nową cenę: " + curr_price + " przez: " + last_bidder);
 		}
-		notifyObservator();
+		notifyObservator("Bidding");
 	}
 	
 	@Override
