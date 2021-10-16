@@ -66,9 +66,12 @@ public class Participant implements Observator{
 		
 	}
 	public void bid(double new_price, AuctionItem AuctionItem) {
-		myAuctions.add(AuctionItem);
-		this.auIt = AuctionItem;
-		AuctionItem.registerObserver(this);
+		if(!myAuctions.contains(AuctionItem)) {
+			myAuctions.add(AuctionItem);
+			this.auIt = AuctionItem;
+			AuctionItem.registerObserver(this);
+		}
+		
 		AuctionItem.bid(new_price, this);	
 	}
 	public void showMyAuctions() {

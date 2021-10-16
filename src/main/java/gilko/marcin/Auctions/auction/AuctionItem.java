@@ -11,7 +11,7 @@ public class AuctionItem implements Auction{
 	private static int count =0;
 	
 	private ArrayList<Observator> observers;
-	private int id;
+	private long id;
 	private String description;
 	private int quantity;
 	private double start_price;
@@ -22,6 +22,7 @@ public class AuctionItem implements Auction{
 	private Participant last_bidder;
 	
 	private Timer timer;
+	private TimerTask task;
 	
 	public AuctionItem() {};
 	
@@ -38,7 +39,7 @@ public class AuctionItem implements Auction{
 		this.start_time = 0;	
 		this.timer = new Timer();
 	}
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 	
@@ -87,18 +88,21 @@ public class AuctionItem implements Auction{
 
 	@Override
 	public void startAuction() {
-		long current = System.currentTimeMillis();
-		start_time = System.currentTimeMillis();
-		System.out.println("start_time=" + time);
-		System.out.println("current: " + current);
 
-		System.out.println("startAuction");
-		notifyObserver();
+			notifyObservator();
+			long current = System.currentTimeMillis();
+			start_time = System.currentTimeMillis();
+			System.out.println("start_time=" + time);
+			System.out.println("current: " + current);
+	
+			System.out.println("startAuction");
+
+
 	}
 	@Override
 	public void stopAuction() {
 		System.out.println("stopAuction");
-		notifyObserver();
+		notifyObservator();
 		
 	}
 	@Override
@@ -109,7 +113,7 @@ public class AuctionItem implements Auction{
 	}
 	
 	@Override
-	public void notifyObserver() {
+	public void notifyObservator() {
 		System.out.println(" - ");
 		System.out.println("Powiadomienia:");
 		for(int i = 0; i < observers.size(); i++) {
@@ -138,7 +142,7 @@ public class AuctionItem implements Auction{
 			last_bidder = bidder;
 			System.out.println("podano nową cenę: " + curr_price + " przez: " + last_bidder);
 		}
-		notifyObserver();
+		notifyObservator();
 	}
 	
 	@Override
