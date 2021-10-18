@@ -16,10 +16,12 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "auctionItem")
+@Table(name = "auction")
 public class AuctionItem implements Auction{
 	
 	private ArrayList<Observator> observers;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String description;
 	private int quantity;
@@ -47,8 +49,7 @@ public class AuctionItem implements Auction{
 		this.timer = new Timer();
 		this.counter = 0;
 	}
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	public long getId() {
 		return id;
 	}
