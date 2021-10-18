@@ -1,14 +1,23 @@
 package gilko.marcin.Auctions.auction;
 
 import gilko.marcin.Auctions.participant.Observator;
+
 import gilko.marcin.Auctions.participant.Participant;
 
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name = "auctionItem")
 public class AuctionItem implements Auction{
-	private static int count =0;
 	
 	private ArrayList<Observator> observers;
 	private long id;
@@ -29,7 +38,6 @@ public class AuctionItem implements Auction{
 	public AuctionItem(String desciption, int quantity, double start_price,
 					double min_price, int time, double curr_price) {
 		observers = new ArrayList<Observator>();
-		this.id = (++count);
 		this.description = desciption;
 		this.quantity = quantity;
 		this.start_price = start_price;
@@ -39,6 +47,8 @@ public class AuctionItem implements Auction{
 		this.timer = new Timer();
 		this.counter = 0;
 	}
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public long getId() {
 		return id;
 	}
