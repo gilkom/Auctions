@@ -34,9 +34,9 @@
                   <td th:text="${auction.cur_price}">Current price</td>
                    <td th:text="${auction.last_bidder}">Last bidder</td>
                 <td>
-                    <a th:href="/@{'/edit/' + ${product.id}}">Edit</a>
+                    <a th:href="/@{'/edit/' + ${auction.id}}">Edit</a>
                     &nbsp;&nbsp;&nbsp;
-                    <a th:href="/@{'/delete/' + ${product.id}}">Delete</a>
+                    <a th:href="/@{'/delete/' + ${auction.id}}">Delete</a>
                 </td>
             </tr>
         </tbody>
