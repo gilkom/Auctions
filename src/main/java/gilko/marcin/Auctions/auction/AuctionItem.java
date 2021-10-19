@@ -13,12 +13,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 
 @Entity
-@Table(name = "auction")
+@Table(name = "auctions")
 public class AuctionItem implements Auction{
-	
+	@Transient
 	private ArrayList<Observator> observers;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,10 +30,13 @@ public class AuctionItem implements Auction{
 	private double min_price;
 	private int time;
 	private double curr_price;
+	@Transient
 	private Participant last_bidder;
+	@Transient
 	private int counter;
-	
+	@Transient
 	private Timer timer;
+	@Transient
 	private TimerTask task;
 	
 	public AuctionItem() {};
