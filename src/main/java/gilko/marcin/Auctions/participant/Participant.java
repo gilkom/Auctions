@@ -3,6 +3,9 @@ package gilko.marcin.Auctions.participant;
 import java.util.*;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -12,6 +15,10 @@ import gilko.marcin.Auctions.auction.AuctionItem;
 @Entity
 @Table(name = "participants")
 public class Participant implements Observator{
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private String mail;
 	private String firstName;
 	private String secondName;
@@ -29,7 +36,13 @@ public class Participant implements Observator{
 		this.mail = mail;
 		setMyAuctions(new HashSet<>());
 	}
+	public Long getId() {
+		return id;
+	}
 	
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public String getFirstName() {
 		return firstName;
 	}
