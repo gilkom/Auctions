@@ -31,13 +31,8 @@
                 <td th:text="${auction.start_price}">Start price</td>
                 <td th:text="${auction.min_price}">Minimum price</td>
                  <td th:text="${auction.time}">Time</td>
-                  <td th:text="${auction.cur_price}">Current price</td>
+                  <td th:text="${auction.curr_price}">Current price</td>
                    <td th:text="${auction.last_bidder}">Last bidder</td>
-                <td>
-                    <a th:href="/@{'/edit/' + ${auction.id}}">Edit</a>
-                    &nbsp;&nbsp;&nbsp;
-                    <a th:href="/@{'/delete/' + ${auction.id}}">Delete</a>
-                </td>
             </tr>
         </tbody>
     </table>

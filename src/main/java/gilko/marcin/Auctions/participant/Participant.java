@@ -2,16 +2,22 @@ package gilko.marcin.Auctions.participant;
 
 import java.util.*;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import gilko.marcin.Auctions.auction.Auction;
 import gilko.marcin.Auctions.auction.AuctionItem;
 
+@Entity
+@Table(name = "participants")
 public class Participant implements Observator{
-	
+	private String mail;
 	private String firstName;
 	private String secondName;
-	private String mail;
+	@Transient
 	private AuctionItem auIt;
+	@Transient
 	private Set<AuctionItem> myAuctions;
 	
 	public Participant() {}
