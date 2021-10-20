@@ -7,29 +7,30 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import gilko.marcin.Auctions.auction.AuctionItem;
-import gilko.marcin.Auctions.repository.AuctionItemRepository;
+import gilko.marcin.Auctions.participant.Participant;
+import gilko.marcin.Auctions.repository.ParticipantRepository;
 
 @Service
 @Transactional
-public class AuctionItemService {
+public class ParticipantService {
 
 	@Autowired
-	private AuctionItemRepository repo;
+	private ParticipantRepository repo;
 	
-	public List<AuctionItem> listAll(){
+	public  List<Participant> listAll(){
 		return repo.findAll();
 	}
 	
-	public void save(AuctionItem auctionItem) {
-		repo.save(auctionItem);
+	public void save(Participant participant) {
+		repo.save(participant);
 	}
 	
-	public AuctionItem get(long id) {
+	public Participant get(long id) {
 		return repo.findById(id).get();
 	}
 	
 	public void delete(long id) {
 		repo.deleteById(id);
 	}
+	
 }
