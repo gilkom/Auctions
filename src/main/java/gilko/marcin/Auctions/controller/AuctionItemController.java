@@ -16,11 +16,11 @@ public class AuctionItemController {
 	@Autowired
 	private AuctionItemService service;
 	
-	@RequestMapping("/")
+	@RequestMapping("/auctions")
 	public String viewAuctions(Model model) {
 		List<AuctionItem> listAuctionItems = service.listAll();
 		model.addAttribute("listAuctionItems", listAuctionItems);
 		
-		return "index";
+		return "auctions";
 	}
 }
