@@ -3,9 +3,12 @@ package gilko.marcin.Auctions;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
+
 import gilko.marcin.Auctions.auction.AuctionItem;
 import gilko.marcin.Auctions.participant.Participant;
 
+@EnableEncryptableProperties
 @SpringBootApplication
 public class AuctionsApplication {
 
