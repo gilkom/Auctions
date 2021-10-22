@@ -20,8 +20,8 @@ public class Participant implements Observator{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String mail;
-	private String firstName;
-	private String secondName;
+	private String first_name;
+	private String last_name;
 	@Transient
 	private AuctionItem auIt;
 	@Transient
@@ -29,10 +29,10 @@ public class Participant implements Observator{
 	
 	public Participant() {}
 	
-	public Participant(String firstName, String secondName, String mail) {
+	public Participant(String first_name, String last_name, String mail) {
 		super();
-		this.firstName = firstName;
-		this.secondName = secondName;
+		this.first_name = first_name;
+		this.last_name = last_name;
 		this.mail = mail;
 		setMyAuctions(new HashSet<>());
 	}
@@ -43,17 +43,17 @@ public class Participant implements Observator{
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getFirstName() {
-		return firstName;
+	public String getFirst_name() {
+		return first_name;
 	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setFirst_name(String first_name) {
+		this.first_name = first_name;
 	}
-	public String getSecondName() {
-		return secondName;
+	public String getLast_name() {
+		return last_name;
 	}
-	public void setSecondName(String secondName) {
-		this.secondName = secondName;
+	public void setLast_name(String last_name) {
+		this.last_name = last_name;
 	}
 	public String getMail() {
 		return mail;
@@ -71,7 +71,7 @@ public class Participant implements Observator{
 	}
 	@Override
 	public String toString() {
-		return "Participant [firstName=" + firstName + ", secondName=" + secondName + ", mail=" + mail + "] "
+		return "Participant [first_name=" + first_name + ", last_name=" + last_name + ", mail=" + mail + "] "
 				+ "auctionItem";
 	}
 	
