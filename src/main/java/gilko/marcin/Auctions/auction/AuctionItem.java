@@ -82,7 +82,7 @@ public class AuctionItem implements Auction{
 	public void setMin_price(double min_price) {
 		this.min_price = min_price;
 	}
-	public double getTime() {
+	public int getTime() {
 		return time;
 	}
 	public void setTime(int time) {
