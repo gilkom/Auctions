@@ -23,4 +23,12 @@ public class AuctionItemController {
 		
 		return "auctions";
 	}
+	
+	@RequestMapping("/new")
+	public String showNewAuctionItemPage(Model model) {
+		AuctionItem auctionItem = new AuctionItem();
+		model.addAttribute("auctionItem", auctionItem);
+		
+		return "new_auction_item";
+	}
 }
