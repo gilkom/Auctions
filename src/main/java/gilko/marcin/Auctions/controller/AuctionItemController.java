@@ -30,7 +30,7 @@ public class AuctionItemController {
 		return "auctions";
 	}
 	
-	@RequestMapping("/new")
+	@RequestMapping("/auctions/new")
 	public String showNewAuctionItemPage(Model model) {
 		AuctionItem auctionItem = new AuctionItem();
 		model.addAttribute("auctionItem", auctionItem);
@@ -38,7 +38,7 @@ public class AuctionItemController {
 		return "new_auction_item";
 	}
 	
-	@RequestMapping(value="/save", method = RequestMethod.POST)
+	@RequestMapping(value="auctions/new/save", method = RequestMethod.POST)
 	public String saveNewAuction(@Valid @ModelAttribute("auctionItem") AuctionItem auctionItem,
 				BindingResult result) {
 		if(result.hasErrors()) {
