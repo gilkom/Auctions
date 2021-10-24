@@ -2,10 +2,14 @@ package gilko.marcin.Auctions.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -35,10 +39,15 @@ public class AuctionItemController {
 	}
 	
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public String saveNewAuction(@ModelAttribute("auctionItem") AuctionItem auctionItem) {
-		service.save(auctionItem);
-		
-		return "redirect:/auctions";
+	public String saveNewAuction(@Valid @ModelAttribute("auctionItem") AuctionItem auctionItem,
+				BindingResult result) {
+		if(result.hasErrors()) {
+			return "new_auction_item";
+		}else {
+			service.save(auctionItem);
+			return "redirect:/auctions";
+		}
+
 	}
 	
 }

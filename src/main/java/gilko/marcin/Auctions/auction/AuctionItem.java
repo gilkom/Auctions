@@ -14,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -27,10 +29,15 @@ public class AuctionItem implements Auction{
 	
 	@NotBlank(message = "Name is mandatory")
 	private String name;
+	@NotBlank(message = "Description is mandatory")
 	private String description;
+	@NotNull(message = "Quantity is mandatory")
 	private int quantity;
+	@NotNull(message = "Start price is mandatory")
 	private double start_price;
+	@NotNull(message = "Minimum price is mandatory")
 	private double min_price;
+	@NotNull(message = "Time is mandatory")
 	private int time;
 	private double curr_price;
 	@Transient

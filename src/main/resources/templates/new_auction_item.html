@@ -27,26 +27,32 @@
 						<tr>
 							<td>Name</td>
 							<td><input type="text" th:field="*{name}"/></td>
+							<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">NameError</td>
 						</tr>
 						<tr>
 			                <td>Description</td>
 			                <td><input type="text" th:field="*{description}"/></td>
+			                <td th:if="${#fields.hasErrors('description')}" th:errors="*{description}">NameError</td>
 						</tr>
 						<tr>
 			                <td>Quantity</td>
 			                <td><input type="text" th:field="*{quantity}"/></td>
+			                <td th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}">NameError</td>
 						</tr>
 						<tr>
 			                <td>Start price</td>
 			                <td><input type="text" th:field="*{start_price}"/></td>
+			                <td th:if="${#fields.hasErrors('start_price')}" th:errors="*{start_price}">NameError</td>
 						</tr>
 						<tr>
 			                <td>Minimum price</td>
 			                <td><input type="text" th:field="*{min_price}"/></td>
+			                <td th:if="${#fields.hasErrors('min_price')}" th:errors="*{min_price}">NameError</td>
 						</tr>
 						<tr>
 			                <td>Time(seconds)</td>
 			                <td><input type="text" th:field="*{time}"/></td>
+			                <td th:if="${#fields.hasErrors('time')}" th:errors="*{time}">NameError</td>
 						</tr>
 						<tr>
 							<td><button type="submit" class = "btn btn-primary btn-lg">Start the auction</button></td>
