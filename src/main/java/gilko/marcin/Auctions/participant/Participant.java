@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotBlank;
 
 import gilko.marcin.Auctions.auction.Auction;
 import gilko.marcin.Auctions.auction.AuctionItem;
@@ -19,8 +20,11 @@ public class Participant implements Observator{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NotBlank(message = "Email is mandatory")
 	private String mail;
+	@NotBlank(message = "First name is mandatory")
 	private String first_name;
+	@NotBlank(message = "Last name is mandatory")
 	private String last_name;
 	@Transient
 	private AuctionItem auIt;
