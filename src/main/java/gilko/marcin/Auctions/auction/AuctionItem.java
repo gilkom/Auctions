@@ -24,6 +24,8 @@ public class AuctionItem implements Auction{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	
+	@NotBlank(message = "Name is mandatory")
 	private String name;
 	private String description;
 	private int quantity;
