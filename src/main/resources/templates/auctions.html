@@ -26,7 +26,7 @@
 				<table class="table">
 			        <thead>
 			            <tr>
-			                <th>Auction ID</th>
+			                <th>Name</th>
 			                <th>Description</th>
 			                <th>Quantity</th>
 			                <th>Start price</th>
@@ -38,7 +38,7 @@
 			        </thead>
 			        <tbody>
 			            <tr th:each="auction : ${listAuctionItems}">
-			                <td th:text="${auction.id}">Product ID</td>
+			                <td th:text="${auction.name}">Product ID</td>
 			                <td th:text="${auction.description}">Description</td>
 			                <td th:text="${auction.quantity}">Quantity</td>
 			                <td th:text="${auction.start_price}">Start price</td>

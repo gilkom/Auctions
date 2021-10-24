@@ -24,6 +24,7 @@ public class AuctionItem implements Auction{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	private String name;
 	private String description;
 	private int quantity;
 	private double start_price;
@@ -41,9 +42,10 @@ public class AuctionItem implements Auction{
 	
 	public AuctionItem() {};
 	
-	public AuctionItem(String desciption, int quantity, double start_price,
+	public AuctionItem(String name, String desciption, int quantity, double start_price,
 					double min_price, int time, double curr_price) {
 		observers = new ArrayList<Observator>();
+		this.name = name;
 		this.description = desciption;
 		this.quantity = quantity;
 		this.start_price = start_price;
@@ -176,6 +178,14 @@ public class AuctionItem implements Auction{
 		return "AuctionItem [id=" + id + ", description=" + description + ", quantity=" + quantity + ", start_price="
 				+ start_price + ", min_price=" + min_price + ", time=" + time + ", curr_price=" + curr_price
 				+"]";
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	
