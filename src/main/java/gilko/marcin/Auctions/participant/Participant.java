@@ -32,7 +32,7 @@ public class Participant implements Observator{
 	@Transient
 	private AuctionItem auIt;
 	@Transient
-	private Set<AuctionParticipant> auctionParticipant = new HashSet<AuctionParticipant>();
+	private Set<AuctionParticipant> auctionParticipants = new HashSet<AuctionParticipant>();
 	
 	public Participant() {}
 	
@@ -41,7 +41,6 @@ public class Participant implements Observator{
 		this.first_name = first_name;
 		this.last_name = last_name;
 		this.mail = mail;
-		setMyAuctions(new HashSet<>());
 	}
 	public Long getId() {
 		return id;
@@ -70,15 +69,15 @@ public class Participant implements Observator{
 	}
 	
 	@OneToMany(mappedBy = "primaryKey.id", cascade = CascadeType.ALL)
-	public Set<AuctionParticipant> getAuctionParticipant() {
-		return auctionParticipant;
+	public Set<AuctionParticipant> getAuctionParticipants() {
+		return auctionParticipants;
 	}
 
-	public void setAuctionParticipant(Set<AuctionParticipant> auctionParticipant) {
-		this.auctionParticipant = auctionParticipant;
+	public void setAuctionParticipants(Set<AuctionParticipant> auctionParticipants) {
+		this.auctionParticipants = auctionParticipants;
 	}
 	public void addAuctionParticipant(AuctionParticipant auctionParticipant) {
-		this.auctionParticipant.add(auctionParticipant);
+		this.auctionParticipants.add(auctionParticipant);
 	}
 	
 	
@@ -98,19 +97,22 @@ public class Participant implements Observator{
 		System.out.println("End of message");
 		
 	}
-	public void bid(double new_price, AuctionItem AuctionItem) {
-		if(!myAuctions.contains(AuctionItem)) {
+	public void bid(double new_price, AuctionItem auctionItem) {
+		if(auctionParticipants.contains(auctionItem)) {
+			System.out.println("#####Do sprawdzenia i dorobienia");
+		}
+		/*if(auctionParticipant.contains(AuctionItem)!myAuctions.contains(AuctionItem)) {
 			myAuctions.add(AuctionItem);
 			this.auIt = AuctionItem;
 			AuctionItem.registerObserver(this);
-		}
+		}*/
 		
-		AuctionItem.bid(new_price, this);	
+		auctionItem.bid(new_price, this);	
 	}
 	public void showMyAuctions() {
-		for(AuctionItem auction: myAuctions) {
-			System.out.println("Id: " + auction.getId() + ", description: " + auction.getDescription()
-				+", Curr price: " +  auction.getCurr_price() + ", last bidder: " + auction.getLast_bidder().mail);
+		for(AuctionParticipant auction: auctionParticipants) {
+			System.out.println("Id: " + auction.getAuctionItem().getId() + ", description: " + auction.getAuctionItem().getDescription()
+				+", Curr price: " +  auction.getAuctionItem().getCurr_price() + ", last bidder: " + auction.getAuctionItem().getLast_bidder().mail);
 		}
 	}
 	
@@ -121,7 +123,8 @@ public class Participant implements Observator{
 		}else {
 			System.out.println("Unregistering from auction");
 			auctionIt.unregisterObserver(this);
-			myAuctions.remove(auctionIt);
+			auctionParticipants.remove(auctionIt);
+			//myAuctions.remove(auctionIt);
 		}
 		
 	}
