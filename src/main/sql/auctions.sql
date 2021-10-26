@@ -1,4 +1,4 @@
-create table auctions(
+create table auction(
 id serial primary key,
 name varchar(50) not null,
 description varchar(200) not null,
