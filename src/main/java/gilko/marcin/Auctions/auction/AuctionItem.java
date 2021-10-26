@@ -19,7 +19,7 @@ import javax.validation.constraints.NotNull;
 
 
 @Entity
-@Table(name = "auctions")
+@Table(name = "auction")
 public class AuctionItem implements Auction{
 	@Transient
 	private ArrayList<Observator> observers;

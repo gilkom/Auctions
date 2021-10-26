@@ -2,19 +2,22 @@ package gilko.marcin.Auctions.participant;
 
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 
 import gilko.marcin.Auctions.auction.Auction;
 import gilko.marcin.Auctions.auction.AuctionItem;
+import gilko.marcin.Auctions.auction_participant.AuctionParticipant;
 
 @Entity
-@Table(name = "participants")
+@Table(name = "participant")
 public class Participant implements Observator{
 	
 	@Id
@@ -29,7 +32,7 @@ public class Participant implements Observator{
 	@Transient
 	private AuctionItem auIt;
 	@Transient
-	private Set<AuctionItem> myAuctions;
+	private Set<AuctionParticipant> auctionParticipant = new HashSet<AuctionParticipant>();
 	
 	public Participant() {}
 	
@@ -66,13 +69,20 @@ public class Participant implements Observator{
 		this.mail = mail;
 	}
 	
-	public Set<AuctionItem> getMyAuctions() {
-		return myAuctions;
+	@OneToMany(mappedBy = "primaryKey.id", cascade = CascadeType.ALL)
+	public Set<AuctionParticipant> getAuctionParticipant() {
+		return auctionParticipant;
 	}
 
-	public void setMyAuctions(Set<AuctionItem> myAuctions) {
-		this.myAuctions = myAuctions;
+	public void setAuctionParticipant(Set<AuctionParticipant> auctionParticipant) {
+		this.auctionParticipant = auctionParticipant;
 	}
+	public void addAuctionParticipant(AuctionParticipant auctionParticipant) {
+		this.auctionParticipant.add(auctionParticipant);
+	}
+	
+	
+	
 	@Override
 	public String toString() {
 		return "Participant [first_name=" + first_name + ", last_name=" + last_name + ", mail=" + mail + "] "
