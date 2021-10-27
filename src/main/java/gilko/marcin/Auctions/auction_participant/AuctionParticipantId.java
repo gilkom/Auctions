@@ -13,11 +13,19 @@ import gilko.marcin.Auctions.participant.Participant;
 public class AuctionParticipantId implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-	private AuctionItem auctionItem;
-	private Participant participant;
-	
 	
 	@ManyToOne(cascade = CascadeType.ALL)
+	private AuctionItem auctionItem;
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Participant participant;
+	
+	public AuctionParticipantId() {}
+	
+	public AuctionParticipantId(AuctionItem auctionItem, Participant participant) {
+		this.auctionItem = auctionItem;
+		this.participant = participant;
+	}
+	
 	public AuctionItem getAuctionItem() {
 		return auctionItem;
 	}
@@ -26,7 +34,6 @@ public class AuctionParticipantId implements Serializable{
 		this.auctionItem = auctionItem;
 	}
 	
-	@ManyToOne(cascade = CascadeType.ALL)
 	public Participant getParticipant() {
 		return participant;
 	}

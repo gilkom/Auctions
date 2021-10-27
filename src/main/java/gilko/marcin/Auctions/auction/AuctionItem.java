@@ -12,6 +12,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,7 +29,8 @@ import javax.validation.constraints.NotNull;
 public class AuctionItem implements Auction{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	@Column(name = "auction_id")
+	private long auction_item_id;
 	
 	@NotBlank(message = "Name is mandatory")
 	private String name;
@@ -54,6 +56,7 @@ public class AuctionItem implements Auction{
 	@Transient
 	private ArrayList<Observator> observers;
 	
+	@OneToMany(mappedBy = "primaryKey.auctionItem", cascade = CascadeType.ALL)
 	private Set<AuctionParticipant> auctionParticipants = new HashSet<AuctionParticipant>();
 	
 	public AuctionItem() {};
@@ -72,8 +75,11 @@ public class AuctionItem implements Auction{
 		this.counter = 0;
 	}
 
-	public long getId() {
-		return id;
+	public long getAuction_item_id() {
+		return auction_item_id;
+	}
+	public void setAuction_item_id(long auction_item_id) {
+		this.auction_item_id = auction_item_id;
 	}
 	
 	public String getDescription() {
@@ -119,7 +125,6 @@ public class AuctionItem implements Auction{
 		this.last_bidder = last_bidder;
 	}
 	
-	@OneToMany(mappedBy = "primaryKey.group", cascade = CascadeType.ALL)
 	public Set<AuctionParticipant> getAuctionParticipants(){
 		return auctionParticipants;
 	}
@@ -139,11 +144,11 @@ public class AuctionItem implements Auction{
 			@Override
 			public void run() {
 				long result = time-(counter);
-				System.out.println("Time left counter id: " + id + ", =" + result);
+				System.out.println("Time left counter id: " + auction_item_id + ", =" + result);
 				counter++;
 				if(counter >= time) {
-					System.out.println("end of " + id);
-					notifyObservator("End of auction: " + id);
+					System.out.println("end of " + auction_item_id);
+					notifyObservator("End of auction: " + auction_item_id);
 					cancel();
 				}
 
@@ -204,7 +209,7 @@ public class AuctionItem implements Auction{
 	
 	@Override
 	public String toString() {
-		return "AuctionItem [id=" + id + ", description=" + description + ", quantity=" + quantity + ", start_price="
+		return "AuctionItem [id=" + auction_item_id + ", description=" + description + ", quantity=" + quantity + ", start_price="
 				+ start_price + ", min_price=" + min_price + ", time=" + time + ", curr_price=" + curr_price
 				+"]";
 	}

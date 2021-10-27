@@ -1,5 +1,5 @@
 create table auction(
-id serial primary key,
+auction_id serial primary key,
 name varchar(50) not null,
 description varchar(200) not null,
 quantity int not null,

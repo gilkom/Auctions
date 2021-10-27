@@ -3,6 +3,7 @@ package gilko.marcin.Auctions.participant;
 import java.util.*;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,7 +23,7 @@ public class Participant implements Observator{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long participant_id;
 	@NotBlank(message = "Email is mandatory")
 	private String mail;
 	@NotBlank(message = "First name is mandatory")
@@ -31,7 +32,9 @@ public class Participant implements Observator{
 	private String last_name;
 	@Transient
 	private AuctionItem auIt;
-	@Transient
+
+	@OneToMany(mappedBy = "primaryKey.participant",
+			cascade = CascadeType.PERSIST)
 	private Set<AuctionParticipant> auctionParticipants = new HashSet<AuctionParticipant>();
 	
 	public Participant() {}
@@ -42,12 +45,12 @@ public class Participant implements Observator{
 		this.last_name = last_name;
 		this.mail = mail;
 	}
-	public Long getId() {
-		return id;
+	public Long getParticipant_id() {
+		return participant_id;
 	}
 	
-	public void setId(Long id) {
-		this.id = id;
+	public void setParticipant_id(Long id) {
+		this.participant_id = id;
 	}
 	public String getFirst_name() {
 		return first_name;
@@ -68,7 +71,6 @@ public class Participant implements Observator{
 		this.mail = mail;
 	}
 	
-	@OneToMany(mappedBy = "primaryKey.id", cascade = CascadeType.ALL)
 	public Set<AuctionParticipant> getAuctionParticipants() {
 		return auctionParticipants;
 	}
@@ -80,8 +82,6 @@ public class Participant implements Observator{
 		this.auctionParticipants.add(auctionParticipant);
 	}
 	
-	
-	
 	@Override
 	public String toString() {
 		return "Participant [first_name=" + first_name + ", last_name=" + last_name + ", mail=" + mail + "] "
@@ -92,7 +92,7 @@ public class Participant implements Observator{
 	@Override
 	public void update(double curr_price, Participant last_bidder, String notification) {
 		System.out.println("Message for " + toString());
-		System.out.println("AuctionId: " + auIt.getId() + ", curr_price: " + curr_price + ", last_bidder: " +
+		System.out.println("AuctionId: " + auIt.getAuction_item_id() + ", curr_price: " + curr_price + ", last_bidder: " +
 						last_bidder + ", notification: " + notification);
 		System.out.println("End of message");
 		
@@ -111,7 +111,7 @@ public class Participant implements Observator{
 	}
 	public void showMyAuctions() {
 		for(AuctionParticipant auction: auctionParticipants) {
-			System.out.println("Id: " + auction.getAuctionItem().getId() + ", description: " + auction.getAuctionItem().getDescription()
+			System.out.println("Id: " + auction.getAuctionItem().getAuction_item_id() + ", description: " + auction.getAuctionItem().getDescription()
 				+", Curr price: " +  auction.getAuctionItem().getCurr_price() + ", last bidder: " + auction.getAuctionItem().getLast_bidder().mail);
 		}
 	}
