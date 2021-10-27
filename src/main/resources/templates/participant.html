@@ -1,0 +1,59 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+      <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+	<head>
+	<meta charset ="utf-8"/>
+	<title>Participants List</title>
+	</head>	
+	<body>
+	<div class = "container">
+	<div class = "container">
+		<div align = "center">
+			<div class="jumbotron">
+					<h2 style="display: inline">Welcome to </h2>
+					<h2 th:text="${participant.first_name}" style="display: inline"></h2>
+					<h2 style="display: inline"></h2>
+					<h2 th:text="${participant.last_name}" style="display: inline"></h2>
+					<h2 style="display: inline">   menu!</h2><br/></br/>
+					<a class = "btn btn-primary btn-lg" href = "/">Back to menu</a>
+					<a class="btn btn-primary btn-lg" href= "/participants/new">Add a new user</a>
+			</div>
+			<div class="container">
+			<p>You have to select or create user to participate in auctions.</p>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>User id</th>
+							<th>Email</th>
+							<th>First name</th>
+							<th>Last name</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="participant : ${listParticipant}">
+	                <td th:text="${participant.participant_id}">User id</td>
+	                <td th:text="${participant.mail}">Email</td>
+	                <td th:text="${participant.first_name}">First name</td>
+	                <td th:text="${participant.last_name}">Last name</td>
+	                <td>
+	                	<a th:href="@{'/participant/' + ${participant.participant_id}}" class="btn btn-success">Select user</a>
+	                </td>
+	                
+	            </tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	</div>
+	</body>
+</html>
