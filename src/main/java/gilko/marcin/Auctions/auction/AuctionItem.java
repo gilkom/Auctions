@@ -1,17 +1,22 @@
 package gilko.marcin.Auctions.auction;
 
+import gilko.marcin.Auctions.auction_participant.AuctionParticipant;
 import gilko.marcin.Auctions.participant.Observator;
 
 import gilko.marcin.Auctions.participant.Participant;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
@@ -21,8 +26,6 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "auction")
 public class AuctionItem implements Auction{
-	@Transient
-	private ArrayList<Observator> observers;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -48,6 +51,10 @@ public class AuctionItem implements Auction{
 	private Timer timer;
 	@Transient
 	private TimerTask task;
+	@Transient
+	private ArrayList<Observator> observers;
+	
+	private Set<AuctionParticipant> auctionParticipants = new HashSet<AuctionParticipant>();
 	
 	public AuctionItem() {};
 	
@@ -110,6 +117,19 @@ public class AuctionItem implements Auction{
 	}
 	public void setLast_bidder(Participant last_bidder) {
 		this.last_bidder = last_bidder;
+	}
+	
+	@OneToMany(mappedBy = "primaryKey.group", cascade = CascadeType.ALL)
+	public Set<AuctionParticipant> getAuctionParticipants(){
+		return auctionParticipants;
+	}
+	
+	public void setAuctionParticipants(Set<AuctionParticipant> auctionParticipants) {
+		this.auctionParticipants = auctionParticipants;
+	}
+	
+	public void addAuctionParticipants(AuctionParticipant auctionParticipant) {
+		this.auctionParticipants.add(auctionParticipant);
 	}
 
 	@Override
