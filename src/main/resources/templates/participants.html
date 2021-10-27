@@ -23,6 +23,7 @@
 					<a class="btn btn-primary btn-lg" href= "/participants/new">Add a new user</a>
 			</div>
 			<div class="container">
+			<p>You have to select or create user to participate in auctions.</p>
 				<table class="table">
 					<thead>
 						<tr>
@@ -30,6 +31,7 @@
 							<th>Email</th>
 							<th>First name</th>
 							<th>Last name</th>
+							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -38,6 +40,9 @@
 	                <td th:text="${participant.mail}">Email</td>
 	                <td th:text="${participant.first_name}">First name</td>
 	                <td th:text="${participant.last_name}">Last name</td>
+	                <td>
+	                	<a th:href="@{'/participant/' + ${participant.participant_id}}" class="btn btn-success">Select user</a>
+	                </td>
 	                
 	            </tr>
 					</tbody>
