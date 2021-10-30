@@ -17,15 +17,19 @@
 	<div class = "container">
 	<div class = "container">
 		<div align = "center">
-			<div class="jumbotron"> 
-				<div align ="right">
-					<p style="display: inline">Username: </p>
-					<p style="display: inline" th:text="${participant.first_name}"></p>
-					<p style="display: inline" th:text="${participant.last_name}"></p>
-				</div>
+			<div class="jumbotron"> 			
 					<h2 >User profile</h2>
-					<a class = "btn btn-primary btn-lg" href = "/participants">Switch user</a>
 			</div>
+			<div class = "container">
+				<div align ="right">
+					<a class = "btn btn-primary" href = "/participants">Switch user</a>
+						<p style="display: inline">Username: </p>
+						<p style="display: inline" th:text="${participant.first_name}"></p>
+						<p style="display: inline" th:text="${participant.last_name}"></p>
+						<br/><br/>
+				</div>
+			</div>
+			
 			
 			<div class = "container">
 				<ul class="nav nav-tabs">
