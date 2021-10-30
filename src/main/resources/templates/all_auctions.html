@@ -33,9 +33,9 @@
 			
 			<div class = "container">
 				<ul class="nav nav-tabs">
-				  <li role="presentation" class="active"><a href="#">Notifications</a></li>
+				  <li role="presentation"><a href="#">Notifications</a></li>
 				  <li role="presentation"><a href="#">Active auctions</a></li>
-				  <li role="presentation"><a th:href="@{'/participant/' + ${participant.participant_id} + '/all_auctions'}">All auctions</a></li>
+				  <li role="presentation" class="active"><a th:href="@{'/participant/' + ${participant.participant_id} + '/all_auctions'}">All auctions</a></li>
 				  <li role="presentation"><a href="#">My auctions</a></li>
 				</ul>
 			</div>
@@ -43,29 +43,34 @@
 			
 			<div class="container">
 				<table class="table">
-					<thead>
-						<tr>
-							<th>User id</th>
-							<th>Email</th>
-							<th>First name</th>
-							<th>Last name</th>
-							<th>Action</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="participant : ${listParticipant}">
-	                <td th:text="${participant.participant_id}">User id</td>
-	                <td th:text="${participant.mail}">Email</td>
-	                <td th:text="${participant.first_name}">First name</td>
-	                <td th:text="${participant.last_name}">Last name</td>
-	                <td>
-	                	<a th:href="@{'/participant/' + ${participant.participant_id}}" class="btn btn-success">Select user</a>
-	                </td>
-	                
-	            </tr>
-					</tbody>
-				</table>
-			</div>
+			        <thead>
+			            <tr>
+			            	<th>Id</th>
+			                <th>Name</th>
+			                <th>Description</th>
+			                <th>Quantity</th>
+			                <th>Start price</th>
+			                <th>Minimum price</th>
+			                <th>Time</th>
+			                <th>Current price</th>
+			                <th>Last bidder</th>
+			            </tr>
+			        </thead>
+			        <tbody>
+			            <tr th:each="auction : ${listAuctionItems}">
+			            	<td th:text="${auction.auction_item_id}">Auction id</td>
+			                <td th:text="${auction.name}">Auction name</td>
+			                <td th:text="${auction.description}">Description</td>
+			                <td th:text="${auction.quantity}">Quantity</td>
+			                <td th:text="${auction.start_price}">Start price</td>
+			                <td th:text="${auction.min_price}">Minimum price</td>
+			                 <td th:text="${auction.time}">Time</td>
+			                  <td th:text="${auction.curr_price}">Current price</td>
+			                   <td th:text="${auction.last_bidder}">Last bidder</td>
+			            </tr>
+			        </tbody>
+   				 </table>
+				</div>
 		</div>
 	</div>
 	</div>

@@ -50,12 +50,5 @@ public class AuctionItemController {
 
 	}
 	
-	@RequestMapping("/all_auctions")
-	public String viewAllAuctions(Model model) {
-		List<AuctionItem> listAuctionItems = service.listAll();
-		model.addAttribute("listAuctionItems", listAuctionItems);
-		
-		return "all_auctions";
-	}
 	
 }

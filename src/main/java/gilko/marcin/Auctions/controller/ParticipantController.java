@@ -14,18 +14,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import gilko.marcin.Auctions.auction.AuctionItem;
 import gilko.marcin.Auctions.participant.Participant;
+import gilko.marcin.Auctions.service.AuctionItemService;
 import gilko.marcin.Auctions.service.ParticipantService;
 
 @Controller
 public class ParticipantController {
 	
 	@Autowired
-	private ParticipantService service;
+	private ParticipantService participantService;
+	@Autowired
+	private AuctionItemService auctionItemService;
 	
 	@RequestMapping("/participants")
 	public String viewParticipants(Model model) {
-		List<Participant> listParticipant = service.listAll();
+		List<Participant> listParticipant = participantService.listAll();
 		model.addAttribute("listParticipant", listParticipant);
 		
 		return "participants";
@@ -45,7 +49,7 @@ public class ParticipantController {
 		if(result.hasErrors()) {
 			return "new_participant";
 		}else {
-			service.save(participant);
+			participantService.save(participant);
 			return "redirect:/participants";
 		}
 	}
@@ -53,10 +57,20 @@ public class ParticipantController {
 	@RequestMapping("/participant/{participant_id}")
 	public ModelAndView participantMenu(@PathVariable(name = "participant_id") Long id) {
 		ModelAndView mav = new ModelAndView("participant");
-		Participant participant = service.get(id);
+		Participant participant = participantService.get(id);
 		mav.addObject("participant", participant);
 		
 		return mav;
+	}
+	
+	@RequestMapping("/participant/{participant_id}/all_auctions")
+	public String viewAllAuctions(@PathVariable(name = "participant_id") Long id, Model model) {
+		List<AuctionItem> listAuctionItems = auctionItemService.listAll();
+		Participant participant = participantService.get(id);
+		model.addAttribute("listAuctionItems", listAuctionItems);
+		model.addAttribute("participant", participant);
+		
+		return "all_auctions";
 	}
 	
 
