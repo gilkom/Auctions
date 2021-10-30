@@ -17,17 +17,27 @@
 	<div class = "container">
 	<div class = "container">
 		<div align = "center">
-			<div class="jumbotron">
-					<h2 style="display: inline">Welcome to </h2>
-					<h2 th:text="${participant.first_name}" style="display: inline"></h2>
-					<h2 style="display: inline"></h2>
-					<h2 th:text="${participant.last_name}" style="display: inline"></h2>
-					<h2 style="display: inline">   menu!</h2><br/></br/>
-					<a class = "btn btn-primary btn-lg" href = "/">Back to menu</a>
-					<a class="btn btn-primary btn-lg" href= "/participants/new">Add a new user</a>
+			<div class="jumbotron"> 
+				<div align ="right">
+					<p style="display: inline">Username: </p>
+					<p style="display: inline" th:text="${participant.first_name}"></p>
+					<p style="display: inline" th:text="${participant.last_name}"></p>
+				</div>
+					<h2 >User profile</h2>
+					<a class = "btn btn-primary btn-lg" href = "/participants">Switch user</a>
 			</div>
+			
+			<div class = "container">
+				<ul class="nav nav-tabs">
+				  <li role="presentation" class="active"><a href="#">Notifications</a></li>
+				  <li role="presentation"><a href="#">Active auctions</a></li>
+				  <li role="presentation"><a href="#">All auctions</a></li>
+				  <li role="presentation"><a href="#">My auctions</a></li>
+				</ul>
+			</div>
+			
+			
 			<div class="container">
-			<p>You have to select or create user to participate in auctions.</p>
 				<table class="table">
 					<thead>
 						<tr>
