@@ -33,6 +33,7 @@
 			
 			<div class = "container">
 				<ul class="nav nav-tabs">
+				<li role="presentation"><a th:href="@{'/participant/' + ${participant.participant_id}}">Home</a></li>
 				  <li role="presentation"><a href="#">Notifications</a></li>
 				  <li role="presentation"><a href="#">Active auctions</a></li>
 				  <li role="presentation" class="active"><a th:href="@{'/participant/' + ${participant.participant_id} + '/all_auctions'}">All auctions</a></li>
@@ -54,10 +55,11 @@
 			                <th>Time</th>
 			                <th>Current price</th>
 			                <th>Last bidder</th>
+			                <th>Action</th>
 			            </tr>
 			        </thead>
 			        <tbody>
-			            <tr th:each="auction : ${listAuctionItems}">
+			            <tr th:each="auction : ${listAuctionItems}" class = 'clickable_row' data-href='url://localhost/'>
 			            	<td th:text="${auction.auction_item_id}">Auction id</td>
 			                <td th:text="${auction.name}">Auction name</td>
 			                <td th:text="${auction.description}">Description</td>
@@ -67,6 +69,10 @@
 			                 <td th:text="${auction.time}">Time</td>
 			                  <td th:text="${auction.curr_price}">Current price</td>
 			                   <td th:text="${auction.last_bidder}">Last bidder</td>
+			                   <td>
+			                   	<a th:href="@{'/participant/' + ${participant.participant_id} + '/auction/' + ${auction.auction_item_id}}" 
+			                   		class="btn btn-success">View auction</a>
+			                   </td>
 			            </tr>
 			        </tbody>
    				 </table>
@@ -74,5 +80,7 @@
 		</div>
 	</div>
 	</div>
+	
 	</body>
+	
 </html>
