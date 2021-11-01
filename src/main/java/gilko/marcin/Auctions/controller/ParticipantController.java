@@ -73,5 +73,19 @@ public class ParticipantController {
 		return "all_auctions";
 	}
 	
+	@RequestMapping("/participant/{participant_id}/auction/{auctionItem_id}")
+	public ModelAndView viewAuction(@PathVariable(name = "participant_id") Long participant_id, 
+			@PathVariable(name= "auctionItem_id") Long auctionItem_id, Model model) {
+		ModelAndView mav = new ModelAndView("auction");
+		
+		Participant participant = participantService.get(participant_id);
+		mav.addObject("participant", participant);
+		
+		AuctionItem auctionItem = auctionItemService.get(auctionItem_id);
+		mav.addObject("auctionItem", auctionItem);
+		
+		return mav;
+	}
+	
 
 }
