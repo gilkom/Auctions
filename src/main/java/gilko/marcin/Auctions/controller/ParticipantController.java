@@ -87,5 +87,32 @@ public class ParticipantController {
 		return mav;
 	}
 	
+	@RequestMapping("/participant/{participant_id}/new_auction")
+	public String showNewAuctionItemPage(@PathVariable(name = "participant_id") Long participant_id, Model model) {
+		AuctionItem auctionItem = new AuctionItem();
+		Participant participant = participantService.get(participant_id);
+		model.addAttribute("auctionItem", auctionItem);
+		model.addAttribute("participant", participant);
+		
+		return "new_auction";
+	}
+	
+	@RequestMapping(value="/participant/{participant_id}/new_auction/save", method = RequestMethod.POST)
+	public String saveNewAuction(@PathVariable(name = "participant_id")Long participant_id, 
+				@ModelAttribute("auctionItem")@Valid AuctionItem auctionItem,
+				BindingResult auctionResult, Model model) {
+		
+		
+				Participant participant = participantService.get(participant_id);
+				model.addAttribute("participant", participant);
+				if(auctionResult.hasErrors()) {
+					return "new_auction";
+				}else {
+					auctionItemService.save(auctionItem);
+					return "redirect:/participant/" + participant_id + "/all_auctions";
+				}
+
+	}
+	
 
 }

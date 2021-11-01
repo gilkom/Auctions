@@ -14,15 +14,35 @@
 	<title>New Auction Item</title>
 	</head>
 	<body>
-		<div class="container">
-			<div align="center">
-				<div class = "jumbotron">
-					<h2>Create a New Auction</h2>
-					<a class = "btn btn-primary" href = "/auctions">Back to menu</a>
-				</div>
+		<div class = "container">
+	<div class = "container">
+		<div align = "center">
+			<div class="jumbotron"> 			
+					<h2 >User profile</h2>
 			</div>
 			<div class = "container">
-				<form action="#" th:action="@{/participant/new/save}" th:object="${auctionItem}" method ="post">
+				<div align ="right">
+					<a class = "btn btn-primary" href = "/participants">Switch user</a>
+						<p style="display: inline">Username: </p>
+						<p style="display: inline" th:text="${participant.first_name}"></p>
+						<p style="display: inline" th:text="${participant.last_name}"></p>
+						<br/><br/>
+				</div>
+			</div>
+			
+			
+			<div class = "container">
+				<ul class="nav nav-tabs">
+				  <li role="presentation"><a th:href="@{'/participant/' + ${participant.participant_id}}">Home</a></li>
+				  <li role="presentation"><a href="#">Notifications</a></li>
+				  <li role="presentation"><a href="#">Active auctions</a></li>
+				  <li role="presentation"><a th:href="@{'/participant/' + ${participant.participant_id} + '/all_auctions'}">All auctions</a></li>
+				  <li role="presentation"><a href="#">My auctions</a></li>
+				  <li role="presentation" class="active"><a th:href="@{'/participant/' + ${participant.participant_id} + '/new_auction'}">Create a new auction</a></li>
+				</ul>
+			</div>
+			<div class = "container">
+				<form action="#" th:action="@{'/participant/' + ${participant.participant_id} + '/new_auction/save'}" th:object="${auctionItem}" method ="post">
 					<table class="table">
 						<tr>
 							<td>Name</td>
