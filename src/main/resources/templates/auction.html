@@ -1,0 +1,59 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+      <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+	<head>
+	<meta charset ="utf-8"/>
+	<title>Auction Details</title>
+	</head>
+	<body>
+		<div class="container">
+			<div align="center">
+				<div class="jumbotron">
+					<h2>Auction Details</h2>
+				</div>
+			</div>
+		</div>
+		
+		<div class = "container">
+				<div align ="right">
+					<a class = "btn btn-primary" href = "/participants">Switch user</a>
+						<p style="display: inline">Username: </p>
+						<p style="display: inline" th:text="${participant.first_name}"></p>
+						<p style="display: inline" th:text="${participant.last_name}"></p>
+						<br/><br/>
+				</div>
+		</div>
+		
+		<div class = "container">
+				<ul class="nav nav-tabs">
+				<li role="presentation"><a th:href="@{'/participant/' + ${participant.participant_id}}">Home</a></li>
+				  <li role="presentation"><a href="#">Notifications</a></li>
+				  <li role="presentation"><a href="#">Active auctions</a></li>
+				  <li role="presentation"><a th:href="@{'/participant/' + ${participant.participant_id} + '/all_auctions'}">All auctions</a></li>
+				  <li role="presentation"><a href="#">My auctions</a></li>
+				  <li role="presentation"><a th:href="@{'/participant/' + ${participant.participant_id} + '/new_auction'}">Create a new auction</a></li>
+				</ul>
+		</div>	
+		<br/><br/>
+		<div class = "container">
+			<div class = "container">
+				<h4 style = "display: inline;">Id aukcji:</h4>
+				<h4 style = "display: inline;"th:text = "${auctionItem.auction_item_id}"></h4>
+				<br/></br>
+				<div align = "center">
+					<h2 th:text = "${auctionItem.name}"></h2>
+				</div>
+			</div>
+		</div>
+		
+	</body>
+		
+</html>
