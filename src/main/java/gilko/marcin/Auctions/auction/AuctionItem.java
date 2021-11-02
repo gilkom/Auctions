@@ -5,6 +5,7 @@ import gilko.marcin.Auctions.participant.Observator;
 
 import gilko.marcin.Auctions.participant.Participant;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -22,6 +23,8 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 
 @Entity
@@ -49,6 +52,7 @@ public class AuctionItem implements Auction{
 	private Participant last_bidder;
 	@Transient
 	private int counter;
+	private LocalDateTime start_time;
 	@Transient
 	private Timer timer;
 	@Transient
@@ -62,7 +66,7 @@ public class AuctionItem implements Auction{
 	public AuctionItem() {};
 	
 	public AuctionItem(String name, String desciption, int quantity, double start_price,
-					double min_price, int time, double curr_price) {
+					double min_price, int time, double curr_price, LocalDateTime start_time) {
 		observers = new ArrayList<Observator>();
 		this.name = name;
 		this.description = desciption;
@@ -73,6 +77,7 @@ public class AuctionItem implements Auction{
 		this.curr_price = curr_price;
 		this.timer = new Timer();
 		this.counter = 0;
+		this.start_time = start_time;
 	}
 
 	public long getAuction_item_id() {
@@ -220,6 +225,14 @@ public class AuctionItem implements Auction{
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public LocalDateTime getStart_time() {
+		return start_time;
+	}
+
+	public void setStart_time(LocalDateTime start_time) {
+		this.start_time = start_time;
 	}
 	
 	

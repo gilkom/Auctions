@@ -58,6 +58,7 @@
 			                <th>Time</th>
 			                <th>Current price</th>
 			                <th>Last bidder</th>
+			                <th>Start time</th>
 			                <th>Action</th>
 			            </tr>
 			        </thead>
@@ -72,6 +73,10 @@
 			                 <td th:text="${auction.time}">Time</td>
 			                  <td th:text="${auction.curr_price}">Current price</td>
 			                   <td th:text="${auction.last_bidder}">Last bidder</td>
+			                   <td th:text="${auction.start_time.toLocalDate()} + ' ' + 
+			                   		${auction.start_time.getHour()} + ':' +
+			                   		${auction.start_time.getMinute()} + ':' +
+			                   		${auction.start_time.getSecond()}">Start time</td>
 			                   <td>
 			                   	<a th:href="@{'/participant/' + ${participant.participant_id} + '/auction/' + ${auction.auction_item_id}}" 
 			                   		class="btn btn-success">View auction</a>

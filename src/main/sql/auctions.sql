@@ -7,4 +7,5 @@ start_price double precision not null,
 min_price double precision not null,
 time int not null,
 curr_price double precision,
-last_bidder serial);
+last_bidder serial,
+start_time timestamp);
