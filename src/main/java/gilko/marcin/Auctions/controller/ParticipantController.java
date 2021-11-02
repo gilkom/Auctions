@@ -1,5 +1,7 @@
 package gilko.marcin.Auctions.controller;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -83,6 +85,11 @@ public class ParticipantController {
 		
 		AuctionItem auctionItem = auctionItemService.get(auctionItem_id);
 		mav.addObject("auctionItem", auctionItem);
+		
+		LocalDateTime now = LocalDateTime.now();
+		Duration duration = Duration.between(auctionItem.getStart_time(), now);
+		System.out.println("duration: " + duration.getSeconds());
+		
 		
 		return mav;
 	}

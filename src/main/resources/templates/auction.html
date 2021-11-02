@@ -45,12 +45,30 @@
 		<br/><br/>
 		<div class = "container">
 			<div class = "container">
-				<h4 style = "display: inline;">Id aukcji:</h4>
+				<h4 style = "display: inline;">Auction id:</h4>
 				<h4 style = "display: inline;"th:text = "${auctionItem.auction_item_id}"></h4>
 				<br/></br>
 				<div align = "center">
 					<h2 th:text = "${auctionItem.name}"></h2>
 				</div>
+				
+				<h5 th:text = "${auctionItem.description}"></h5>
+				<br/><br/><br/>
+				<h4 style = "display: inline;">Quantity:</h4>
+				<h4 style = "display: inline;"th:text = "${auctionItem.quantity}"></h4>
+				<h4 style = "display: inline;">, Start price:</h4>
+				<h4 style = "display: inline;"th:text = "${auctionItem.start_price}"></h4>
+				<h4 style = "display: inline;">, Minimum price:</h4>
+				<h4 style = "display: inline;"th:text = "${auctionItem.min_price}"></h4>
+				<br/></br>
+				<h3 style = "display: inline;">Current price:</h3>
+				<h3 style = "display: inline;"th:text = "${auctionItem.start_price}"></h3>
+				<br/></br>
+				<h3 style = "display: inline;">Start time:</h3>
+				<h3 style = "display: inline;" th:text="${auctionItem.start_time.toLocalDate()} + ' ' + 
+			                   		${auctionItem.start_time.getHour()} + ':' +
+			                   		${auctionItem.start_time.getMinute()} + ':' +
+			                   		${auctionItem.start_time.getSecond()}">Start time</h3>
 			</div>
 		</div>
 		
