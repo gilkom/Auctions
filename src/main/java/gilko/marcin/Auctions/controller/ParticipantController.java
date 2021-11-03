@@ -108,10 +108,14 @@ public class ParticipantController {
 	public String saveNewAuction(@PathVariable(name = "participant_id")Long participant_id, 
 				@ModelAttribute("auctionItem")@Valid AuctionItem auctionItem,
 				BindingResult auctionResult, Model model) {
-		
+				
 		
 				Participant participant = participantService.get(participant_id);
 				model.addAttribute("participant", participant);
+				
+				auctionItem.setStart_time(LocalDateTime.now());
+				auctionItem.setCurr_price(auctionItem.getStart_price());
+				
 				if(auctionResult.hasErrors()) {
 					return "new_auction";
 				}else {

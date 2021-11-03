@@ -66,7 +66,7 @@ public class AuctionItem implements Auction{
 	public AuctionItem() {};
 	
 	public AuctionItem(String name, String desciption, int quantity, double start_price,
-					double min_price, int time, LocalDateTime start_time) {
+					double min_price, int time) {
 		observers = new ArrayList<Observator>();
 		this.name = name;
 		this.description = desciption;
@@ -77,7 +77,8 @@ public class AuctionItem implements Auction{
 		this.curr_price = start_price;
 		this.timer = new Timer();
 		this.counter = 0;
-		this.start_time = start_time;
+		this.start_time = LocalDateTime.now();
+		System.out.println("start_time: " + this.start_time);
 	}
 
 	public long getAuction_item_id() {
