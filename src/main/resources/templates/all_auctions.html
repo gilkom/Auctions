@@ -1,13 +1,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-      <!-- Latest compiled and minified CSS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-
-<!-- Optional theme -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
 
 	<head>
 	<meta charset ="utf-8"/>
@@ -59,6 +56,7 @@
 			                <th>Current price</th>
 			                <th>Last bidder</th>
 			                <th>Start time</th>
+							<th>End time</th>
 			                <th>Action</th>
 			            </tr>
 			        </thead>
@@ -77,6 +75,10 @@
 			                   		${auction.start_time.getHour()} + ':' +
 			                   		${auction.start_time.getMinute()} + ':' +
 			                   		${auction.start_time.getSecond()}">Start time</td>
+			                   	<td th:text="${auction.start_time.plusSeconds(auction.time).toLocalDate()} + ' ' + 
+			                   		${auction.start_time.plusSeconds(auction.time).getHour()} + ':' +
+			                   		${auction.start_time.plusSeconds(auction.time).getMinute()} + ':' +
+			                   		${auction.start_time.plusSeconds(auction.time).getSecond()}">End time</td>
 			                   <td>
 			                   	<a th:href="@{'/participant/' + ${participant.participant_id} + '/auction/' + ${auction.auction_item_id}}" 
 			                   		class="btn btn-success">View auction</a>
@@ -89,5 +91,8 @@
 	</div>
 	
 	</body>
+	
+	
+	
 	
 </html>

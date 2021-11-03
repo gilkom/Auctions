@@ -72,6 +72,8 @@ public class ParticipantController {
 		model.addAttribute("listAuctionItems", listAuctionItems);
 		model.addAttribute("participant", participant);
 		
+		
+		
 		return "all_auctions";
 	}
 	
@@ -89,7 +91,10 @@ public class ParticipantController {
 		LocalDateTime now = LocalDateTime.now();
 		Duration duration = Duration.between(auctionItem.getStart_time(), now);
 		System.out.println("duration: " + duration.getSeconds());
+		long seconds = auctionItem.getTime() - duration.getSeconds();
 		
+		System.out.println("seconds: " + seconds);
+		mav.addObject("seconds", seconds);
 		
 		return mav;
 	}

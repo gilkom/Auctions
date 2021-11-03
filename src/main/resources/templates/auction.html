@@ -1,13 +1,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-      <!-- Latest compiled and minified CSS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-
-<!-- Optional theme -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
 
 	<head>
 	<meta charset ="utf-8"/>
@@ -69,9 +66,53 @@
 			                   		${auctionItem.start_time.getHour()} + ':' +
 			                   		${auctionItem.start_time.getMinute()} + ':' +
 			                   		${auctionItem.start_time.getSecond()}">Start time</h3>
+			    <br/></br>
+				<h3 style = "display: inline;">Time left:</h3>
+				<h3 style = "display: inline;" id = "timer"></h3>
 			</div>
 		</div>
-		
+
 	</body>
 		
+	<script>	
+		var sec = "[[${seconds}]]";
+
+		// Update the count down every 1 second
+		var x = setInterval(function() {
+
+		  var days = 0;
+		  var hours = 0;
+		  var minutes = 0;
+		  var seconds = 0;
+		  
+		  var res = sec;
+		  
+		  if((res / 86400) > 0){
+			  days = Math.floor(res/86400);
+			  res = res - (days * 86400);
+		  }
+		  if((res / 3600) > 0){
+			  hours = Math.floor(res/3600);
+			  res = res - (hours * 3600);
+		  }
+		  if((res/ 60) > 0){
+			  minutes = Math.floor(res/60);
+			  res = res - (minutes * 60);
+		  }
+		  if(res > 0){
+			  seconds = Math.floor(res);
+			  res = res -(seconds);
+		  }
+		  sec = sec - 1;
+
+		  document.getElementById("timer").innerHTML = days + "d " + hours + "h "
+		  + minutes + "m " + seconds + "s ";
+		
+		  // If the count down is finished, write some text
+		  if (sec < 0) {
+		    clearInterval(x);
+		    document.getElementById("timer").innerHTML = "Auction ended";
+		  }
+		}, 1000);
+	</script>		
 </html>
