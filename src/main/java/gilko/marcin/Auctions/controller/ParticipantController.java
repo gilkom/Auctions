@@ -130,6 +130,20 @@ public class ParticipantController {
 
 	}
 	
+	@RequestMapping(value="/participant/{participant_id}/auction/{auction_item_id}/bid", method = RequestMethod.POST)
+	public String bid(@PathVariable(name = "participant_id")Long participant_id,
+			@PathVariable(name = "auction_item_id")Long auction_item_id,
+			@ModelAttribute("auctionItem")@Valid AuctionItem auctionItem,
+			BindingResult auctionResult, Model model) {
+			
+		if(auctionResult.hasErrors()) {
+			return "new_auction";
+		}else {
+			auctionItemService.save(auctionItem);
+			return "redirect:/participant/" + participant_id + "/auction/" + auction_item_id;
+		}
+	}
+	
 	
 
 }
