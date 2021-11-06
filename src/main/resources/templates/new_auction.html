@@ -42,7 +42,7 @@
 				</ul>
 			</div>
 			<div class = "container">
-				<form action="#" th:action="@{'/participant/' + ${participant.participant_id} + '/new_auction/save'}" th:object="${auctionItem}" method ="post">
+				<form th:action="@{'/participant/' + ${participant.participant_id} + '/new_auction/save'}" th:object="${auctionItem}" method ="post">
 					<table class="table">
 						<tr>
 							<td>Name</td>

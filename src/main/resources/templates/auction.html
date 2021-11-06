@@ -57,18 +57,31 @@
 				<h4 style = "display: inline;"th:text = "${auctionItem.start_price}"></h4>
 				<h4 style = "display: inline;">, Minimum price:</h4>
 				<h4 style = "display: inline;"th:text = "${auctionItem.min_price}"></h4>
-				<br/></br>
-				<h3 style = "display: inline;">Current price:</h3>
-				<h3 style = "display: inline;"th:text = "${auctionItem.start_price}"></h3>
-				<br/></br>
-				<h3 style = "display: inline;">Start time:</h3>
-				<h3 style = "display: inline;" th:text="${auctionItem.start_time.toLocalDate()} + ' ' + 
+				<h4 style = "display: inline;">, Start time:</h4>
+				<h4 style = "display: inline;" th:text="${auctionItem.start_time.toLocalDate()} + ' ' + 
 			                   		${auctionItem.start_time.getHour()} + ':' +
 			                   		${auctionItem.start_time.getMinute()} + ':' +
-			                   		${auctionItem.start_time.getSecond()}">Start time</h3>
-			    <br/></br>
+			                   		${auctionItem.start_time.getSecond()}">Start time</h4>
+				<br/></br>
 				<h3 style = "display: inline;">Time left:</h3>
 				<h3 style = "display: inline;" id = "timer"></h3>
+								<br/></br>
+			    <br/></br>
+				<h3 style = "display: inline;">Current price:</h3>
+				<h3 style = "display: inline;"th:text = "${auctionItem.start_price}"></h3>
+				<div class = "container">
+					<form action="#" th:object="${auctionItem}" method ="post">
+
+
+								<td>New price:</td>
+								<td><input type="text" th:field="*{curr_price}"/></td>
+								<td><a class = "btn btn-success">Bid</a></td>
+
+
+					</form>
+				</div>
+				
+
 			</div>
 		</div>
 
