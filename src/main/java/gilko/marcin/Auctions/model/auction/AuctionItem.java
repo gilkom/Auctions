@@ -34,6 +34,7 @@ public class AuctionItem implements Auction{
 	@Column(name = "auction_id")
 	private long auction_item_id;
 	
+	private long owner;
 	@NotBlank(message = "Name is mandatory")
 	private String name;
 	@NotBlank(message = "Description is mandatory")
@@ -233,6 +234,14 @@ public class AuctionItem implements Auction{
 
 	public void setStart_time(LocalDateTime start_time) {
 		this.start_time = start_time;
+	}
+
+	public long getOwner() {
+		return owner;
+	}
+
+	public void setOwner(long owner) {
+		this.owner = owner;
 	}
 	
 	

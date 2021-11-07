@@ -90,6 +90,10 @@ public class Participant implements Observator{
 		return notifications;
 	}
 	
+	public void setNotifications(Set<Notification> notifications) {
+		this.notifications = notifications;
+	}
+	
 	
 	@Override
 	public String toString() {

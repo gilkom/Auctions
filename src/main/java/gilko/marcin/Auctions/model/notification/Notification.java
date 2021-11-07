@@ -23,6 +23,8 @@ public class Notification {
 	private LocalDateTime notification_time;
 	private String message;
 
+	@ManyToOne
+	@JoinColumn(name = "participant_id")
 	private Participant participant;
 	
 	public Notification() {}
@@ -47,10 +49,10 @@ public class Notification {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	@ManyToOne
-	@JoinColumn(name = "participant_id")
 	public Participant getParticipant() {
 		return participant;
 	}
-	
+	public void setParticipant(Participant participant) {
+		this.participant = participant;
+	}
 }

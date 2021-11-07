@@ -103,6 +103,7 @@ public class ParticipantController {
 	public String showNewAuctionItemPage(@PathVariable(name = "participant_id") Long participant_id, Model model) {
 		AuctionItem auctionItem = new AuctionItem();
 		Participant participant = participantService.get(participant_id);
+		
 		model.addAttribute("auctionItem", auctionItem);
 		model.addAttribute("participant", participant);
 		
@@ -120,6 +121,7 @@ public class ParticipantController {
 				
 				auctionItem.setStart_time(LocalDateTime.now());
 				auctionItem.setCurr_price(auctionItem.getStart_price());
+				auctionItem.setOwner(participant_id);
 				
 				if(auctionResult.hasErrors()) {
 					return "new_auction";
