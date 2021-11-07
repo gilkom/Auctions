@@ -7,7 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import gilko.marcin.Auctions.auction.AuctionItem;
+import gilko.marcin.Auctions.model.auction.AuctionItem;
 import gilko.marcin.Auctions.repository.AuctionItemRepository;
 
 @Service

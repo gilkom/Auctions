@@ -1,4 +1,4 @@
-package gilko.marcin.Auctions.auction_participant;
+package gilko.marcin.Auctions.model.auction_participant;
 
 import java.io.Serializable;
 
@@ -6,8 +6,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
 
-import gilko.marcin.Auctions.auction.AuctionItem;
-import gilko.marcin.Auctions.participant.Participant;
+import gilko.marcin.Auctions.model.auction.AuctionItem;
+import gilko.marcin.Auctions.model.participant.Participant;
 
 @Embeddable
 public class AuctionParticipantId implements Serializable{

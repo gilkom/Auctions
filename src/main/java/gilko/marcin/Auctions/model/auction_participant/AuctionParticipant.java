@@ -1,4 +1,4 @@
-package gilko.marcin.Auctions.auction_participant;
+package gilko.marcin.Auctions.model.auction_participant;
 
 import javax.persistence.AssociationOverride;
 import javax.persistence.AssociationOverrides;
@@ -8,8 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import gilko.marcin.Auctions.auction.AuctionItem;
-import gilko.marcin.Auctions.participant.Participant;
+import gilko.marcin.Auctions.model.auction.AuctionItem;
+import gilko.marcin.Auctions.model.participant.Participant;
 
 @Entity
 @Table(name = "auction_participant")

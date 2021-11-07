@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import gilko.marcin.Auctions.auction.AuctionItem;
-import gilko.marcin.Auctions.participant.Participant;
+import gilko.marcin.Auctions.model.auction.AuctionItem;
+import gilko.marcin.Auctions.model.participant.Participant;
 import gilko.marcin.Auctions.service.AuctionItemService;
 import gilko.marcin.Auctions.service.ParticipantService;
 

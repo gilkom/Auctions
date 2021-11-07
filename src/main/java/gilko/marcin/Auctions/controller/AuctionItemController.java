@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import gilko.marcin.Auctions.auction.AuctionItem;
+import gilko.marcin.Auctions.model.auction.AuctionItem;
 import gilko.marcin.Auctions.service.AuctionItemService;
 
 @Controller

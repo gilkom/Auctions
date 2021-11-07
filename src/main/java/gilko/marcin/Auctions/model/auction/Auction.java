@@ -1,7 +1,7 @@
-package gilko.marcin.Auctions.auction;
+package gilko.marcin.Auctions.model.auction;
 
-import gilko.marcin.Auctions.participant.Observator;
-import gilko.marcin.Auctions.participant.Participant;
+import gilko.marcin.Auctions.model.participant.Observator;
+import gilko.marcin.Auctions.model.participant.Participant;
 
 public interface Auction {
 	void startAuction();

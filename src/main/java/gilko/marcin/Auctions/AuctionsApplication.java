@@ -5,8 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
 
-import gilko.marcin.Auctions.auction.AuctionItem;
-import gilko.marcin.Auctions.participant.Participant;
+import gilko.marcin.Auctions.model.auction.AuctionItem;
+import gilko.marcin.Auctions.model.participant.Participant;
 
 @EnableEncryptableProperties
 @SpringBootApplication

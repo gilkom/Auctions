@@ -1,4 +1,4 @@
-package gilko.marcin.Auctions.participant;
+package gilko.marcin.Auctions.model.participant;
 
 import java.util.*;
 
@@ -13,9 +13,10 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 
-import gilko.marcin.Auctions.auction.Auction;
-import gilko.marcin.Auctions.auction.AuctionItem;
-import gilko.marcin.Auctions.auction_participant.AuctionParticipant;
+import gilko.marcin.Auctions.model.auction.Auction;
+import gilko.marcin.Auctions.model.auction.AuctionItem;
+import gilko.marcin.Auctions.model.auction_participant.AuctionParticipant;
+import gilko.marcin.Auctions.model.notification.Notification;
 
 @Entity
 @Table(name = "participant")
@@ -36,6 +37,9 @@ public class Participant implements Observator{
 	@OneToMany(mappedBy = "primaryKey.participant",
 			cascade = CascadeType.PERSIST)
 	private Set<AuctionParticipant> auctionParticipants = new HashSet<AuctionParticipant>();
+	
+	@OneToMany(mappedBy = "participant", cascade = CascadeType.ALL)
+	private Set<Notification> notifications;
 	
 	public Participant() {}
 	
@@ -81,6 +85,11 @@ public class Participant implements Observator{
 	public void addAuctionParticipant(AuctionParticipant auctionParticipant) {
 		this.auctionParticipants.add(auctionParticipant);
 	}
+	
+	public Set<Notification> getNotifications(){
+		return notifications;
+	}
+	
 	
 	@Override
 	public String toString() {
