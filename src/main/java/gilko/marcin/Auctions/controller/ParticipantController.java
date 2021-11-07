@@ -135,6 +135,7 @@ public class ParticipantController {
 			@PathVariable(name = "auction_item_id")Long auction_item_id,
 			@ModelAttribute("auctionItem")@Valid AuctionItem auctionItem,
 			BindingResult auctionResult, Model model) {
+			Participant participant = participantService.get(participant_id);
 			
 		if(auctionResult.hasErrors()) {
 			return "new_auction";
