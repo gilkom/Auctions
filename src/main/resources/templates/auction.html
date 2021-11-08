@@ -70,8 +70,8 @@
 				<h3 style = "display: inline;">Current price:</h3>
 				<h3 style = "display: inline;"th:text = "${auctionItem.start_price}"></h3>
 				<div class = "container" id = "bidding" disabled="disabled">
-					<form action="@{'/participant/' + ${participant.participant_id} +
-					'/auction/' + ${auctionItem.auction_item_id} + '/bid'" th:object="${auctionItem}" method ="post">
+					<form th:action="@{'/participant/' + ${participant.participant_id} +
+					'/auction/' + ${auctionItem.auction_item_id} + '/bid'}" th:object="${auctionItem}" method ="post">
 
 
 								<td>New price:</td>

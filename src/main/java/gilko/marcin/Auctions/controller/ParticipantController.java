@@ -138,6 +138,8 @@ public class ParticipantController {
 			@ModelAttribute("auctionItem")@Valid AuctionItem auctionItem,
 			BindingResult auctionResult, Model model) {
 			Participant participant = participantService.get(participant_id);
+			AuctionItem auction = auctionItem;
+			auction.setLast_bidder(participant);
 			
 		if(auctionResult.hasErrors()) {
 			return "new_auction";
