@@ -79,7 +79,7 @@ public class ParticipantController {
 	
 	@RequestMapping("/participant/{participant_id}/auction/{auctionItem_id}")
 	public ModelAndView viewAuction(@PathVariable(name = "participant_id") Long participant_id, 
-			@PathVariable(name= "auctionItem_id") Long auctionItem_id, Model model) {
+			@PathVariable(name= "auctionItem_id") Long auctionItem_id) {
 		ModelAndView mav = new ModelAndView("auction");
 		
 		Participant participant = participantService.get(participant_id);
@@ -88,15 +88,40 @@ public class ParticipantController {
 		AuctionItem auctionItem = auctionItemService.get(auctionItem_id);
 		mav.addObject("auctionItem", auctionItem);
 		
-		LocalDateTime now = LocalDateTime.now();
-		Duration duration = Duration.between(auctionItem.getStart_time(), now);
-		System.out.println("duration: " + duration.getSeconds());
+		Duration duration = Duration.between(auctionItem.getStart_time(), LocalDateTime.now());
 		long seconds = auctionItem.getTime() - duration.getSeconds();
-		
-		System.out.println("seconds: " + seconds);
 		mav.addObject("seconds", seconds);
 		
 		return mav;
+	}
+	
+	@RequestMapping(value="/participant/{participant_id}/auction/{auction_item_id}/bid", method = RequestMethod.POST)
+	public String bid(@PathVariable(name = "participant_id")Long participant_id,
+			@PathVariable(name = "auction_item_id")Long auction_item_id,
+			@ModelAttribute("auctionItem")@Valid AuctionItem auctionItem,
+			BindingResult auctionResult, Model model) {
+				System.out.println(auctionResult.getAllErrors());
+				Participant participant = participantService.get(participant_id);
+				model.addAttribute("participant", participant);
+			
+				AuctionItem auctionIt = auctionItemService.get(auction_item_id);
+				auctionIt.setLast_bidder(participant);
+				auctionIt.setCurr_price(auctionItem.getCurr_price());
+				model.addAttribute("auctionItem",auctionIt);
+				System.out.println("1");
+				Duration duration = Duration.between(auctionIt.getStart_time(), LocalDateTime.now());
+				System.out.println("2");
+				long seconds = auctionIt.getTime() - duration.getSeconds();
+				System.out.println("3");
+				model.addAttribute("seconds", seconds);
+			
+				if(auctionResult.hasErrors()) {
+					System.out.println("err");
+					return "auction";
+				}else {
+					auctionItemService.save(auctionIt);
+					return "redirect:/participant/" + participant_id + "/auction/" + auction_item_id;
+				}
 	}
 	
 	@RequestMapping("/participant/{participant_id}/new_auction")
@@ -132,22 +157,6 @@ public class ParticipantController {
 
 	}
 	
-	@RequestMapping(value="/participant/{participant_id}/auction/{auction_item_id}/bid", method = RequestMethod.POST)
-	public String bid(@PathVariable(name = "participant_id")Long participant_id,
-			@PathVariable(name = "auction_item_id")Long auction_item_id,
-			@ModelAttribute("auctionItem")@Valid AuctionItem auctionItem,
-			BindingResult auctionResult, Model model) {
-			Participant participant = participantService.get(participant_id);
-			AuctionItem auction = auctionItem;
-			auction.setLast_bidder(participant);
-			
-		if(auctionResult.hasErrors()) {
-			return "new_auction";
-		}else {
-			auctionItemService.save(auctionItem);
-			return "redirect:/participant/" + participant_id + "/auction/" + auction_item_id;
-		}
-	}
 	
 	
 

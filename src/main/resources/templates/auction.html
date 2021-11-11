@@ -48,7 +48,7 @@
 				<div align = "center">
 					<h2 th:text = "${auctionItem.name}"></h2>
 				</div>
-				
+				<h5 style = "display: inline;">Description:</h5>
 				<h5 th:text = "${auctionItem.description}"></h5>
 				<br/><br/><br/>
 				<h4 style = "display: inline;">Quantity:</h4>
@@ -68,7 +68,7 @@
 								<br/></br>
 			    <br/></br>
 				<h3 style = "display: inline;">Current price:</h3>
-				<h3 style = "display: inline;"th:text = "${auctionItem.start_price}"></h3>
+				<h3 style = "display: inline;"th:text = "${auctionItem.curr_price}"></h3>
 				<div class = "container" id = "bidding" disabled="disabled">
 					<form th:action="@{'/participant/' + ${participant.participant_id} +
 					'/auction/' + ${auctionItem.auction_item_id} + '/bid'}" th:object="${auctionItem}" method ="post">
@@ -76,6 +76,9 @@
 
 								<td>New price:</td>
 								<td><input type="text" th:field="*{curr_price}"/></td>
+								<td><input id = "${auctionItem.name}"type="hidden" th:field="*{name}"/></td>
+								<td><input id = "${auctionItem.description}" type="hidden" th:field="*{description}"/></td>
+								<td th:if="${#fields.hasErrors('curr_price')}" th:errors="*{curr_price}">NameError</td>
 								<td><button type="submit" class= "btn btn-success">Bid</button></td>
 								
 
