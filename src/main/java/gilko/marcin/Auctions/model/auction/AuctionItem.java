@@ -48,8 +48,8 @@ public class AuctionItem implements Auction{
 	@NotNull(message = "Time is mandatory")
 	private int time;
 	private double curr_price;
-	@Transient
-	private Participant last_bidder;
+
+	private long last_bidder;
 	@Transient
 	private int counter;
 	private LocalDateTime start_time;
@@ -124,10 +124,10 @@ public class AuctionItem implements Auction{
 	public void setCurr_price(double curr_price) {
 		this.curr_price = curr_price;
 	}
-	public Participant getLast_bidder() {
+	public long getLast_bidder() {
 		return last_bidder;
 	}
-	public void setLast_bidder(Participant last_bidder) {
+	public void setLast_bidder(long last_bidder) {
 		this.last_bidder = last_bidder;
 	}
 	
@@ -204,7 +204,7 @@ public class AuctionItem implements Auction{
 		System.out.println("usunięto obserwatora: " + o);
 	}
 	@Override
-	public void bid(double new_price, Participant bidder) {
+	public void bid(double new_price, long bidder) {
 		if(curr_price < new_price) {
 			curr_price = new_price;
 			last_bidder = bidder;

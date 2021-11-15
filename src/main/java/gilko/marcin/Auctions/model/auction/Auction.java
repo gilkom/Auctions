@@ -10,5 +10,5 @@ public interface Auction {
 	void registerObserver(Observator o);
 	void unregisterObserver(Observator o);
 	void checkTimeLeft();
-	void bid(double new_price, Participant bidder);
+	void bid(double new_price, long bidder);
 }

@@ -23,6 +23,13 @@ public class AuctionParticipant {
 	@EmbeddedId
 	private AuctionParticipantId primaryKey = new AuctionParticipantId();
 	
+	public AuctionParticipant() {}
+	
+	public AuctionParticipant(AuctionParticipantId auctionParticipantId) {
+		this.primaryKey = auctionParticipantId;
+		
+	}
+	
 	public AuctionParticipantId getPrimaryKey() {
 		return primaryKey;
 	}

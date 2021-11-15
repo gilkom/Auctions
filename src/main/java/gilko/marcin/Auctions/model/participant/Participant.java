@@ -103,7 +103,7 @@ public class Participant implements Observator{
 	
 
 	@Override
-	public void update(double curr_price, Participant last_bidder, String notification) {
+	public void update(double curr_price, long last_bidder, String notification) {
 		System.out.println("Message for " + toString());
 		System.out.println("AuctionId: " + auIt.getAuction_item_id() + ", curr_price: " + curr_price + ", last_bidder: " +
 						last_bidder + ", notification: " + notification);
@@ -120,18 +120,18 @@ public class Participant implements Observator{
 			AuctionItem.registerObserver(this);
 		}*/
 		
-		auctionItem.bid(new_price, this);	
+		auctionItem.bid(new_price, this.participant_id);	
 	}
 	public void showMyAuctions() {
 		for(AuctionParticipant auction: auctionParticipants) {
 			System.out.println("Id: " + auction.getAuctionItem().getAuction_item_id() + ", description: " + auction.getAuctionItem().getDescription()
-				+", Curr price: " +  auction.getAuctionItem().getCurr_price() + ", last bidder: " + auction.getAuctionItem().getLast_bidder().mail);
+				+", Curr price: " +  auction.getAuctionItem().getCurr_price() + ", last bidder: " + auction.getAuctionItem().getLast_bidder());
 		}
 	}
 	
 	public void stopObserve(AuctionItem auctionIt) {
-		Participant par = auctionIt.getLast_bidder();
-		if(this.mail == par.mail) {
+		long par = auctionIt.getLast_bidder();
+		if(this.participant_id == par) {
 			System.out.println("You can't unregister if your bid is the highest!");
 		}else {
 			System.out.println("Unregistering from auction");

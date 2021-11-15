@@ -18,8 +18,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import gilko.marcin.Auctions.model.auction.AuctionItem;
 import gilko.marcin.Auctions.model.auction_participant.AuctionParticipant;
+import gilko.marcin.Auctions.model.auction_participant.AuctionParticipantId;
 import gilko.marcin.Auctions.model.participant.Participant;
 import gilko.marcin.Auctions.service.AuctionItemService;
+import gilko.marcin.Auctions.service.AuctionParticipantService;
 import gilko.marcin.Auctions.service.ParticipantService;
 
 @Controller
@@ -30,7 +32,7 @@ public class ParticipantController {
 	@Autowired
 	private AuctionItemService auctionItemService;
 	@Autowired
-	private AuctionParticipant auctionParticipantService;
+	private AuctionParticipantService auctionParticipantService;
 	
 	@RequestMapping("/participants")
 	public String viewParticipants(Model model) {
@@ -108,10 +110,10 @@ public class ParticipantController {
 				model.addAttribute("participant", participant);
 			
 				AuctionItem auctionIt = auctionItemService.get(auction_item_id);
-				auctionIt.setLast_bidder(participant);
+				auctionIt.setLast_bidder(participant.getParticipant_id());
 				auctionIt.setCurr_price(auctionItem.getCurr_price());
 				model.addAttribute("auctionItem",auctionIt);
-				
+				System.out.println("auctionItem: " + auctionIt);
 				Duration duration = Duration.between(auctionIt.getStart_time(), LocalDateTime.now());
 				
 				long seconds = auctionIt.getTime() - duration.getSeconds();
@@ -150,12 +152,16 @@ public class ParticipantController {
 				auctionItem.setCurr_price(auctionItem.getStart_price());
 				auctionItem.setOwner(participant_id);
 				
+				AuctionParticipantId auctionParticipantId = new AuctionParticipantId(auctionItem, participant);
+				AuctionParticipant auctionParticipant = new AuctionParticipant(auctionParticipantId);
+				
 				
 				
 				if(auctionResult.hasErrors()) {
 					return "new_auction";
 				}else {
 					auctionItemService.save(auctionItem);
+					auctionParticipantService.save(auctionParticipant);
 					return "redirect:/participant/" + participant_id + "/all_auctions";
 				}
 
