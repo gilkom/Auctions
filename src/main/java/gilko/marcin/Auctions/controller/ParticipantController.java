@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import gilko.marcin.Auctions.model.auction.AuctionItem;
+import gilko.marcin.Auctions.model.auction_participant.AuctionParticipant;
 import gilko.marcin.Auctions.model.participant.Participant;
 import gilko.marcin.Auctions.service.AuctionItemService;
 import gilko.marcin.Auctions.service.ParticipantService;
@@ -28,6 +29,8 @@ public class ParticipantController {
 	private ParticipantService participantService;
 	@Autowired
 	private AuctionItemService auctionItemService;
+	@Autowired
+	private AuctionParticipant auctionParticipantService;
 	
 	@RequestMapping("/participants")
 	public String viewParticipants(Model model) {
@@ -100,7 +103,7 @@ public class ParticipantController {
 			@PathVariable(name = "auction_item_id")Long auction_item_id,
 			@ModelAttribute("auctionItem")@Valid AuctionItem auctionItem,
 			BindingResult auctionResult, Model model) {
-				System.out.println(auctionResult.getAllErrors());
+		
 				Participant participant = participantService.get(participant_id);
 				model.addAttribute("participant", participant);
 			
@@ -108,15 +111,14 @@ public class ParticipantController {
 				auctionIt.setLast_bidder(participant);
 				auctionIt.setCurr_price(auctionItem.getCurr_price());
 				model.addAttribute("auctionItem",auctionIt);
-				System.out.println("1");
+				
 				Duration duration = Duration.between(auctionIt.getStart_time(), LocalDateTime.now());
-				System.out.println("2");
+				
 				long seconds = auctionIt.getTime() - duration.getSeconds();
-				System.out.println("3");
+				
 				model.addAttribute("seconds", seconds);
 			
 				if(auctionResult.hasErrors()) {
-					System.out.println("err");
 					return "auction";
 				}else {
 					auctionItemService.save(auctionIt);
@@ -147,6 +149,8 @@ public class ParticipantController {
 				auctionItem.setStart_time(LocalDateTime.now());
 				auctionItem.setCurr_price(auctionItem.getStart_price());
 				auctionItem.setOwner(participant_id);
+				
+				
 				
 				if(auctionResult.hasErrors()) {
 					return "new_auction";
