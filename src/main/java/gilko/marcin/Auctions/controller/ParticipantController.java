@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -100,7 +101,7 @@ public class ParticipantController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/participant/{participant_id}/auction/{auction_item_id}/bid", method = RequestMethod.POST)
+	@PostMapping("/participant/{participant_id}/auction/{auction_item_id}/bid")
 	public String bid(@PathVariable(name = "participant_id")Long participant_id,
 			@PathVariable(name = "auction_item_id")Long auction_item_id,
 			@ModelAttribute("auctionItem")@Valid AuctionItem auctionItem,
@@ -139,7 +140,7 @@ public class ParticipantController {
 		return "new_auction";
 	}
 	
-	@RequestMapping(value="/participant/{participant_id}/new_auction/save", method = RequestMethod.POST)
+	@PostMapping("/participant/{participant_id}/new_auction/save")
 	public String saveNewAuction(@PathVariable(name = "participant_id")Long participant_id, 
 				@ModelAttribute("auctionItem")@Valid AuctionItem auctionItem,
 				BindingResult auctionResult, Model model) {
