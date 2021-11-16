@@ -73,13 +73,14 @@
 					<form th:action="@{'/participant/' + ${participant.participant_id} +
 					'/auction/' + ${auctionItem.auction_item_id} + '/bid'}" th:object="${auctionItem}" method ="post">
 
-
+								<h4>New price must be higher than current price!</h4>
 								<td>New price:</td>
-								<td><input type="text" th:field="*{curr_price}"/></td>
+								<td><input type="text" th:field="*{curr_price}" min="100" required/></td>
 								<td><input id = "${auctionItem.name}"type="hidden" th:field="*{name}"/></td>
 								<td><input id = "${auctionItem.description}" type="hidden" th:field="*{description}"/></td>
 								<td th:if="${#fields.hasErrors('curr_price')}" th:errors="*{curr_price}">NameError</td>
 								<td><button type="submit" class= "btn btn-success">Bid</button></td>
+
 								
 
 
