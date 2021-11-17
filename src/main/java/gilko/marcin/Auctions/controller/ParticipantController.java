@@ -178,8 +178,10 @@ public class ParticipantController {
 				if(auctionResult.hasErrors()) {
 					return "new_auction";
 				}else {
+					
+					
 					auctionItemService.save(auctionItem);
-					auctionParticipantService.save(auctionParticipant);
+					auctionParticipantService.registerObserver(auctionParticipant);
 					notificationService.save(notification);
 					return "redirect:/participant/" + participant_id + "/all_auctions";
 				}

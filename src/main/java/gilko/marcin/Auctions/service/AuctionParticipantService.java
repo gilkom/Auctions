@@ -34,4 +34,8 @@ public class AuctionParticipantService {
 	public void delete(AuctionParticipant auctionParticipant) {
 		repo.delete(auctionParticipant);
 	}
+	
+	public void registerObserver(AuctionParticipant auctionParticipant) {
+		repo.save(auctionParticipant);
+	}
 }
