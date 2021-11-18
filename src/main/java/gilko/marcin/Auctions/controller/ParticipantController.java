@@ -173,7 +173,7 @@ public class ParticipantController {
 				AuctionParticipantId auctionParticipantId = new AuctionParticipantId(auctionItem, participant);
 				AuctionParticipant auctionParticipant = new AuctionParticipant(auctionParticipantId);
 				
-				Notification notification = new Notification(LocalDateTime.now(),"You created a new auction", participant);
+				Notification notification = new Notification(LocalDateTime.now(),"You created a new auction", participant, auctionItem);
 				
 				if(auctionResult.hasErrors()) {
 					return "new_auction";

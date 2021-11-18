@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import gilko.marcin.Auctions.model.auction.Auction;
+import gilko.marcin.Auctions.model.auction.AuctionItem;
 import gilko.marcin.Auctions.model.participant.Participant;
 
 @Entity
@@ -27,11 +29,16 @@ public class Notification {
 	@JoinColumn(name = "participant_id")
 	private Participant participant;
 	
+	@ManyToOne
+	@JoinColumn(name = "auction_id")
+	private AuctionItem auction;
+	
 	public Notification() {}
-	public Notification(LocalDateTime notification_time, String message, Participant participant) {
+	public Notification(LocalDateTime notification_time, String message, Participant participant, AuctionItem auction) {
 		this.notification_time = notification_time;
 		this.message = message;
 		this.participant = participant;
+		this.auction = auction;
 	}
 	
 	public long getNotification_id() {
@@ -54,5 +61,11 @@ public class Notification {
 	}
 	public void setParticipant(Participant participant) {
 		this.participant = participant;
+	}
+	public Auction getAuction() {
+		return auction;
+	}
+	public void setAuction(AuctionItem auction) {
+		this.auction = auction;
 	}
 }

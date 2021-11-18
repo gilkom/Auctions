@@ -1,6 +1,7 @@
 package gilko.marcin.Auctions.model.auction;
 
 import gilko.marcin.Auctions.model.auction_participant.AuctionParticipant;
+import gilko.marcin.Auctions.model.notification.Notification;
 import gilko.marcin.Auctions.model.participant.Observator;
 import gilko.marcin.Auctions.model.participant.Participant;
 
@@ -63,6 +64,9 @@ public class AuctionItem implements Auction{
 	
 	@OneToMany(mappedBy = "primaryKey.auctionItem", cascade = CascadeType.ALL)
 	private Set<AuctionParticipant> auctionParticipants = new HashSet<AuctionParticipant>();
+	
+	@OneToMany(mappedBy = "auction", cascade = CascadeType.ALL)
+	private Set<Notification> notifications;
 	
 	public AuctionItem() {};
 	
@@ -142,6 +146,18 @@ public class AuctionItem implements Auction{
 	
 	public void addAuctionParticipants(AuctionParticipant auctionParticipant) {
 		this.auctionParticipants.add(auctionParticipant);
+	}
+	
+	public Set<Notification> getNotifications(){
+		return notifications;
+	}
+	
+	public void setNotifications(Set<Notification> notifications) {
+		this.notifications = notifications;
+	}
+	
+	public void addNotifications(Notification notification) {
+		this.notifications.add(notification);
 	}
 
 	@Override
