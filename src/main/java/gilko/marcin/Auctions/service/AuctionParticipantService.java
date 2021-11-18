@@ -22,7 +22,7 @@ public class AuctionParticipantService {
 		return repo.findAll();
 	}
 	
-	public void save(AuctionParticipant auctionParticipant) {
+	public void registerObserver(AuctionParticipant auctionParticipant) {
 		repo.save(auctionParticipant);
 	}
 	
@@ -35,7 +35,9 @@ public class AuctionParticipantService {
 		repo.delete(auctionParticipant);
 	}
 	
-	public void registerObserver(AuctionParticipant auctionParticipant) {
+	public void unregisterObserver(AuctionParticipant auctionParticipant) {
+		auctionParticipant.setActive(false);
 		repo.save(auctionParticipant);
 	}
+	
 }

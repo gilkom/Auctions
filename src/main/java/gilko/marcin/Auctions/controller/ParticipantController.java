@@ -141,7 +141,7 @@ public class ParticipantController {
 					return "auction";
 				}else {
 					auctionItemService.save(auctionIt);
-					auctionParticipantService.save(auctionParticipant);
+					auctionParticipantService.registerObserver(auctionParticipant);
 					return "redirect:/participant/" + participant_id + "/auction/" + auction_item_id;
 				}
 	}

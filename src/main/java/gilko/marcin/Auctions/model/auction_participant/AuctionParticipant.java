@@ -23,9 +23,12 @@ public class AuctionParticipant {
 	@EmbeddedId
 	private AuctionParticipantId primaryKey = new AuctionParticipantId();
 	
+	private boolean active;
+	
 	public AuctionParticipant() {}
 	
 	public AuctionParticipant(AuctionParticipantId auctionParticipantId) {
+		this.active = true;
 		this.primaryKey = auctionParticipantId;
 		
 	}
@@ -54,6 +57,14 @@ public class AuctionParticipant {
 	
 	public void setAuctionItem(AuctionItem auctionItem) {
 		getPrimaryKey().setAuctionItem(auctionItem);
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 	
 	

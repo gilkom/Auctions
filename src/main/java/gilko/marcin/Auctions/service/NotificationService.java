@@ -30,4 +30,6 @@ public class NotificationService {
 	public void delete(long id) {
 		repo.deleteById(id);
 	}
+	
+
 }
