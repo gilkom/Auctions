@@ -56,7 +56,7 @@
 						</tr>
 						<tr>
 			                <td>Quantity</td>
-			                <td><input type="text" th:field="*{quantity}"/></td>
+			                <td><input type="text" name="quantity" value="1"/></td>
 			                <td th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}">NameError</td>
 						</tr>
 						<tr>
