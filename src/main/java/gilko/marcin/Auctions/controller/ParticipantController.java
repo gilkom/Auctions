@@ -2,6 +2,7 @@ package gilko.marcin.Auctions.controller;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -132,14 +133,25 @@ public class ParticipantController {
 				AuctionParticipantId auctionParticipantId = new AuctionParticipantId(auctionItem, participant);
 				AuctionParticipant auctionParticipant = new AuctionParticipant(auctionParticipantId);
 				
+				List<AuctionParticipant> auctionParticipantList = auctionParticipantService.listId(auction_item_id);
+				
 				if(newPrice <=oldPrice) {
 					return "redirect:/participant/" + participant_id + "/auction/" + auction_item_id;
 				}
-				
+				String message = "User " + participant_id+ " bidded " + newPrice;
+				Notification notification = new Notification(LocalDateTime.now(),message, participant, auctionItem);
 				
 				if(auctionResult.hasErrors()) {
 					return "auction";
 				}else {
+					for(int i = 0; i < auctionParticipantList.size(); i++) {
+						Notification notific = new Notification(notification.getNotification_time(),
+									notification.getMessage(), auctionParticipantList.get(i).getParticipant(),
+									notification.getAuctionItem());
+						
+						notificationService.save(notific);
+						
+					}
 					auctionItemService.save(auctionIt);
 					auctionParticipantService.registerObserver(auctionParticipant);
 					return "redirect:/participant/" + participant_id + "/auction/" + auction_item_id;

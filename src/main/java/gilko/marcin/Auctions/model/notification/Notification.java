@@ -62,10 +62,10 @@ public class Notification {
 	public void setParticipant(Participant participant) {
 		this.participant = participant;
 	}
-	public Auction getAuction() {
+	public AuctionItem getAuctionItem() {
 		return auction;
 	}
-	public void setAuction(AuctionItem auction) {
+	public void setAuctionItem(AuctionItem auction) {
 		this.auction = auction;
 	}
 }

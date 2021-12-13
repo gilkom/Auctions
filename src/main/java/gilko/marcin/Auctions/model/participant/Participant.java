@@ -142,6 +142,12 @@ public class Participant implements Observator{
 		
 	}
 
+	@Override
+	public void update(double curr_price, long last_bidder, Notification notification) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 
 }

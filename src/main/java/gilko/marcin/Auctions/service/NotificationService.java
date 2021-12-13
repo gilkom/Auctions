@@ -31,5 +31,9 @@ public class NotificationService {
 		repo.deleteById(id);
 	}
 	
+	public void saveList(List<Notification> notificationList) {
+		repo.saveAll(notificationList);
+	}
+	
 
 }

@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import gilko.marcin.Auctions.model.auction.AuctionItem;
 import gilko.marcin.Auctions.model.auction_participant.AuctionParticipant;
 import gilko.marcin.Auctions.model.auction_participant.AuctionParticipantId;
 import gilko.marcin.Auctions.repository.AuctionParticipantRepository;
@@ -40,4 +41,7 @@ public class AuctionParticipantService {
 		repo.save(auctionParticipant);
 	}
 	
+	public List<AuctionParticipant> listId(long auction_id){
+		return repo.findByAuction_id(auction_id);
+	}
 }

@@ -26,6 +26,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.mapping.List;
 
 
 @Entity
@@ -161,8 +162,9 @@ public class AuctionItem implements Auction{
 	}
 
 	@Override
-	public void startAuction() {
-		notifyObservator("Start Auction");
+	public void startAuction(Participant participant, AuctionItem auctionItem) {
+		Notification notification = new Notification(LocalDateTime.now(),"You created a new auction", participant, auctionItem);
+		notifyObservator(notification);
 		task = new TimerTask() {
 			@Override
 			public void run() {
@@ -171,7 +173,8 @@ public class AuctionItem implements Auction{
 				counter++;
 				if(counter >= time) {
 					System.out.println("end of " + auction_item_id);
-					notifyObservator("End of auction: " + auction_item_id);
+					Notification notification = new Notification(LocalDateTime.now(),"End of auction", participant, auctionItem);
+					notifyObservator(notification);
 					cancel();
 				}
 
@@ -186,9 +189,10 @@ public class AuctionItem implements Auction{
 
 	}
 	@Override
-	public void stopAuction() {
+	public void stopAuction(Participant participant, AuctionItem auctionItem) {
 		System.out.println("stopAuction");
-		notifyObservator("Stop Auction");
+		Notification notification = new Notification(LocalDateTime.now(),"Auction stopped", participant, auctionItem);
+		notifyObservator(notification);
 		
 	}
 	@Override
@@ -198,7 +202,7 @@ public class AuctionItem implements Auction{
 	}
 	
 	@Override
-	public void notifyObservator(String notification) {
+	public void notifyObservator(Notification notification) {
 		System.out.println(" - ");
 		System.out.println("Powiadomienia:");
 		for(int i = 0; i < observers.size(); i++) {
@@ -259,6 +263,18 @@ public class AuctionItem implements Auction{
 
 	public void setOwner(long owner) {
 		this.owner = owner;
+	}
+
+	@Override
+	public void notifyObservator(String notification) {
+		System.out.println(" - ");
+		System.out.println("Powiadomienia:");
+		for(int i = 0; i < observers.size(); i++) {
+			Observator Obs = observers.get(i);
+			//Obs.update(curr_price,last_bidder, notification);
+		}
+		
+		
 	}
 	
 	
