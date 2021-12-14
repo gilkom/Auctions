@@ -32,4 +32,7 @@ public class AuctionItemService {
 	public void delete(long id) {
 		repo.deleteById(id);
 	}
+	public List<AuctionItem> sortedListAll(){
+		return repo.findAllByOrderByAuction_item_idDesc();
+	}
 }

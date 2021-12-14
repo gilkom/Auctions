@@ -79,7 +79,7 @@ public class ParticipantController {
 	
 	@RequestMapping("/participant/{participant_id}/all_auctions")
 	public String viewAllAuctions(@PathVariable(name = "participant_id") Long id, Model model) {
-		List<AuctionItem> listAuctionItems = auctionItemService.listAll();
+		List<AuctionItem> listAuctionItems = auctionItemService.sortedListAll();
 		Participant participant = participantService.get(id);
 		model.addAttribute("listAuctionItems", listAuctionItems);
 		model.addAttribute("participant", participant);
@@ -87,6 +87,25 @@ public class ParticipantController {
 		
 		
 		return "all_auctions";
+	}
+	
+	@RequestMapping("/participant/{participant_id}/all_active_auctions")
+	public String viewAllActiveAuctions(@PathVariable(name = "participant_id") Long id, Model model) {
+		List<AuctionItem> listAuctionItems = auctionItemService.sortedListAll();
+		List<AuctionItem> listActiveAuctionItems = new ArrayList<>();
+		
+		for(int i = 0; i < listAuctionItems.size(); i++) {
+			System.out.println("time: " + listAuctionItems.get(i).getStart_time());
+		}
+		
+		
+		Participant participant = participantService.get(id);
+		model.addAttribute("listAuctionItems", listAuctionItems);
+		model.addAttribute("participant", participant);
+		
+		
+		
+		return "all_active_auctions";
 	}
 	
 	@RequestMapping("/participant/{participant_id}/auction/{auctionItem_id}")
