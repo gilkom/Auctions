@@ -35,4 +35,6 @@ public class AuctionItemService {
 	public List<AuctionItem> sortedListAll(){
 		return repo.findAllByOrderByAuction_item_idDesc();
 	}
+	
+
 }

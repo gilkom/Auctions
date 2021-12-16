@@ -102,15 +102,7 @@ public class ParticipantController {
 				listActiveAuctionItems.add(listAuctionItems.get(i));	
 			}
 		}
-		
-		
-		Participant participant = participantService.get(id);
-		model.addAttribute("listActiveAuctionItems", listActiveAuctionItems);
-		model.addAttribute("participant", participant);
-		
-		
-		
-		return "all_active_auctions";
+	
 	}
 	
 	@RequestMapping("/participant/{participant_id}/auction/{auctionItem_id}")
