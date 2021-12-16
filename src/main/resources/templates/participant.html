@@ -37,7 +37,7 @@
 				  <li role="presentation"><a href="#">Notifications</a></li>
 				  <li role="presentation"><a th:href="@{'/participant/' + ${participant.participant_id} + '/all_active_auctions'}">Active auctions</a></li>
 				  <li role="presentation"><a th:href="@{'/participant/' + ${participant.participant_id} + '/all_auctions'}">All auctions</a></li>
-				  <li role="presentation"><a href="#">My auctions</a></li>
+				  <li role="presentation"><a th:href="@{'/participant/' + ${participant.participant_id} + '/my_auctions'}">My auctions</a></li>
 				  <li role="presentation"><a th:href="@{'/participant/' + ${participant.participant_id} + '/new_auction'}">Create a new auction</a></li>
 				</ul>
 			</div>

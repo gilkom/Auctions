@@ -16,6 +16,7 @@
 		<div align = "center">
 			<div class="jumbotron"> 			
 					<h2 >All Auctions</h2>
+					<h6>List of all the auctions.</h6>
 			</div>
 		</div>
 	</div>
@@ -36,7 +37,7 @@
 				  <li role="presentation"><a href="#">Notifications</a></li>
 				  <li role="presentation"><a th:href="@{'/participant/' + ${participant.participant_id} + '/all_active_auctions'}">Active auctions</a></li>
 				  <li role="presentation" class="active"><a th:href="@{'/participant/' + ${participant.participant_id} + '/all_auctions'}">All auctions</a></li>
-				  <li role="presentation"><a href="#">My auctions</a></li>
+				  <li role="presentation"><a th:href="@{'/participant/' + ${participant.participant_id} + '/my_auctions'}">My auctions</a></li>
 				  <li role="presentation"><a th:href="@{'/participant/' + ${participant.participant_id} + '/new_auction'}">Create a new auction</a></li>
 				</ul>
 			</div>

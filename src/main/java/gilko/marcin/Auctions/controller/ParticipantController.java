@@ -102,6 +102,30 @@ public class ParticipantController {
 				listActiveAuctionItems.add(listAuctionItems.get(i));	
 			}
 		}
+		Participant participant = participantService.get(id);
+		model.addAttribute("listActiveAuctionItems", listActiveAuctionItems);
+		model.addAttribute("participant", participant);
+		
+		
+		
+		return "all_active_auctions";
+	
+	}
+	
+	@RequestMapping("/participant/{participant_id}/my_auctions")
+	public String viewMyAuctions(@PathVariable(name = "participant_id") Long id, Model model) {
+		List<Long> auctionParticipantList = auctionParticipantService.listByParticipantId(id);
+		List<AuctionItem> listMyAuctionItems = auctionItemService.sortedListByParticipantId(auctionParticipantList);
+		for(int i = 0; i < listMyAuctionItems.size(); i++) {
+			System.out.println(listMyAuctionItems.get(i));
+		}
+		Participant participant = participantService.get(id);
+		model.addAttribute("listMyAuctionItems", listMyAuctionItems);
+		model.addAttribute("participant", participant);
+		
+		
+		
+		return "my_auctions";
 	
 	}
 	

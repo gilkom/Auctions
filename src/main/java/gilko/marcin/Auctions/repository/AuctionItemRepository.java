@@ -11,4 +11,7 @@ public interface AuctionItemRepository extends JpaRepository<AuctionItem, Long>{
 	@Query("SELECT a FROM AuctionItem a order by auction_item_id")
 	public List<AuctionItem> findAllByOrderByAuction_item_idDesc();
 	
+	@Query("SELECT a FROM AuctionItem a WHERE a.auction_item_id in (:participantIdList) order by auction_item_id")
+	public List<AuctionItem> findAllByParticipantIdDesc(List<Long> participantIdList);
+	
 }

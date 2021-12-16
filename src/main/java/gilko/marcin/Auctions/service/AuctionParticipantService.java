@@ -44,7 +44,7 @@ public class AuctionParticipantService {
 	public List<AuctionParticipant> listId(long auction_id){
 		return repo.findByAuction_id(auction_id);
 	}
-	public List<Long> listByParticipantId(long participant_id){
+	public List<Long> listByParticipantId(Long participant_id){
 		return repo.findByParticipant_id(participant_id);
 	}
 }

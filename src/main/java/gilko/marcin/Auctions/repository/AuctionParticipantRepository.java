@@ -16,6 +16,6 @@ public interface AuctionParticipantRepository extends JpaRepository<AuctionParti
 	@Query("SELECT k FROM AuctionParticipant k WHERE k.primaryKey.auctionItem.auction_item_id = :auction_id")
 	public List<AuctionParticipant> findByAuction_id(long auction_id);
 
-	@Query("SELECT k FROM AuctionParticipant k WHERE k.primaryKey.participant.participant_id = :participant_id")
-	public List<Long> findByParticipant_id(long participant_id);
+	@Query("SELECT k.primaryKey.auctionItem.auction_item_id FROM AuctionParticipant k WHERE k.primaryKey.participant.participant_id = :participant_id")
+	public List<Long> findByParticipant_id(Long participant_id);
 }

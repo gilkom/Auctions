@@ -15,7 +15,8 @@
 	<div class = "container">
 		<div align = "center">
 			<div class="jumbotron"> 			
-					<h2 >All Auctions</h2>
+					<h2 >My Auctions</h2>
+					<h6>All auctions in which I take part or have participated.</h6>
 			</div>
 		</div>
 	</div>
@@ -34,9 +35,9 @@
 				<ul class="nav nav-tabs">
 				<li role="presentation"><a th:href="@{'/participant/' + ${participant.participant_id}}">Home</a></li>
 				  <li role="presentation"><a href="#">Notifications</a></li>
-				  <li role="presentation" class ="active"><a th:href="@{'/participant/' + ${participant.participant_id} + '/all_active_auctions'}">Active auctions</a></li>
+				  <li role="presentation"><a th:href="@{'/participant/' + ${participant.participant_id} + '/all_active_auctions'}">Active auctions</a></li>
 				  <li role="presentation"><a th:href="@{'/participant/' + ${participant.participant_id} + '/all_auctions'}">All auctions</a></li>
-				  <li role="presentation"><a href="#">My auctions</a></li>
+				  <li role="presentation" class = "active"><a th:href="@{'/participant/' + ${participant.participant_id} + '/my_auctions'}">My auctions</a></li>
 				  <li role="presentation"><a th:href="@{'/participant/' + ${participant.participant_id} + '/new_auction'}">Create a new auction</a></li>
 				</ul>
 			</div>
@@ -61,7 +62,7 @@
 			            </tr>
 			        </thead>
 			        <tbody>
-			            <tr th:each="auction : ${listActiveAuctionItems}" class = 'clickable_row' data-href='url://localhost/'>
+			            <tr th:each="auction : ${listMyAuctionItems}" class = 'clickable_row' data-href='url://localhost/'>
 			            	<td th:text="${auction.auction_item_id}">Auction id</td>
 			                <td th:text="${auction.name}">Auction name</td>
 			                <td th:text="${auction.description}">Description</td>

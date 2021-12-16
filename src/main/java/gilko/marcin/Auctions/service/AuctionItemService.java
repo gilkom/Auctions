@@ -36,5 +36,7 @@ public class AuctionItemService {
 		return repo.findAllByOrderByAuction_item_idDesc();
 	}
 	
-
+	public List<AuctionItem> sortedListByParticipantId(List<Long> auctionIdList){
+		return repo.findAllByParticipantIdDesc(auctionIdList);
+	}
 }
