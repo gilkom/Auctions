@@ -93,14 +93,19 @@ public class ParticipantController {
 	public String viewAllActiveAuctions(@PathVariable(name = "participant_id") Long id, Model model) {
 		List<AuctionItem> listAuctionItems = auctionItemService.sortedListAll();
 		List<AuctionItem> listActiveAuctionItems = new ArrayList<>();
+		LocalDateTime now = LocalDateTime.now();
 		
 		for(int i = 0; i < listAuctionItems.size(); i++) {
-			System.out.println("time: " + listAuctionItems.get(i).getStart_time());
+			long sec = listAuctionItems.get(i).getTime();
+			LocalDateTime timeLeft = listAuctionItems.get(i).getStart_time().plusSeconds(sec); 
+			if(now.isBefore(timeLeft)) {
+				listActiveAuctionItems.add(listAuctionItems.get(i));	
+			}
 		}
 		
 		
 		Participant participant = participantService.get(id);
-		model.addAttribute("listAuctionItems", listAuctionItems);
+		model.addAttribute("listActiveAuctionItems", listActiveAuctionItems);
 		model.addAttribute("participant", participant);
 		
 		

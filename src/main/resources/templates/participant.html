@@ -35,7 +35,7 @@
 				<ul class="nav nav-tabs">
 				  <li role="presentation" class="active"><a href="#">Home</a></li>
 				  <li role="presentation"><a href="#">Notifications</a></li>
-				  <li role="presentation"><a href="#">Active auctions</a></li>
+				  <li role="presentation"><a th:href="@{'/participant/' + ${participant.participant_id} + '/all_active_auctions'}">Active auctions</a></li>
 				  <li role="presentation"><a th:href="@{'/participant/' + ${participant.participant_id} + '/all_auctions'}">All auctions</a></li>
 				  <li role="presentation"><a href="#">My auctions</a></li>
 				  <li role="presentation"><a th:href="@{'/participant/' + ${participant.participant_id} + '/new_auction'}">Create a new auction</a></li>

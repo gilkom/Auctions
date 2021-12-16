@@ -34,8 +34,8 @@
 				<ul class="nav nav-tabs">
 				<li role="presentation"><a th:href="@{'/participant/' + ${participant.participant_id}}">Home</a></li>
 				  <li role="presentation"><a href="#">Notifications</a></li>
-				  <li role="presentation"><a href="#">Active auctions</a></li>
-				  <li role="presentation" class="active"><a th:href="@{'/participant/' + ${participant.participant_id} + '/all_auctions'}">All auctions</a></li>
+				  <li role="presentation" class ="active"><a th:href="@{'/participant/' + ${participant.participant_id} + '/all_active_auctions'}">Active auctions</a></li>
+				  <li role="presentation"><a th:href="@{'/participant/' + ${participant.participant_id} + '/all_auctions'}">All auctions</a></li>
 				  <li role="presentation"><a href="#">My auctions</a></li>
 				  <li role="presentation"><a th:href="@{'/participant/' + ${participant.participant_id} + '/new_auction'}">Create a new auction</a></li>
 				</ul>
@@ -61,7 +61,7 @@
 			            </tr>
 			        </thead>
 			        <tbody>
-			            <tr th:each="auction : ${listAuctionItems}" class = 'clickable_row' data-href='url://localhost/'>
+			            <tr th:each="auction : ${listActiveAuctionItems}" class = 'clickable_row' data-href='url://localhost/'>
 			            	<td th:text="${auction.auction_item_id}">Auction id</td>
 			                <td th:text="${auction.name}">Auction name</td>
 			                <td th:text="${auction.description}">Description</td>
