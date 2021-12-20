@@ -116,9 +116,7 @@ public class ParticipantController {
 	public String viewMyAuctions(@PathVariable(name = "participant_id") Long id, Model model) {
 		List<Long> auctionParticipantList = auctionParticipantService.listByParticipantId(id);
 		List<AuctionItem> listMyAuctionItems = auctionItemService.sortedListByParticipantId(auctionParticipantList);
-		for(int i = 0; i < listMyAuctionItems.size(); i++) {
-			System.out.println(listMyAuctionItems.get(i));
-		}
+		
 		Participant participant = participantService.get(id);
 		model.addAttribute("listMyAuctionItems", listMyAuctionItems);
 		model.addAttribute("participant", participant);
@@ -128,6 +126,7 @@ public class ParticipantController {
 		return "my_auctions";
 	
 	}
+	
 	
 	@RequestMapping("/participant/{participant_id}/auction/{auctionItem_id}")
 	public ModelAndView viewAuction(@PathVariable(name = "participant_id") Long participant_id, 

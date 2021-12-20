@@ -35,5 +35,10 @@ public class NotificationService {
 		repo.saveAll(notificationList);
 	}
 	
+	public List<Notification> listByParticipantId(Long participant_id){
+		System.out.println("xxxrepo");
+		return repo.findByParticipant_id(participant_id);
+	}
+	
 
 }
