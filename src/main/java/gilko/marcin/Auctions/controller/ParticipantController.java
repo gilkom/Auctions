@@ -143,6 +143,9 @@ public class ParticipantController {
 		long seconds = auctionItem.getTime() - duration.getSeconds();
 		mav.addObject("seconds", seconds);
 		
+		List<Notification> listNotifications = notificationService.auctionHistory(auctionItem_id, auctionItem.getOwner());		
+		mav.addObject("listNotifications", listNotifications);
+		
 		return mav;
 	}
 	
@@ -183,7 +186,12 @@ public class ParticipantController {
 				if(auctionResult.hasErrors()) {
 					return "auction";
 				}else {
+					auctionItemService.save(auctionIt);
+					auctionParticipantService.registerObserver(auctionParticipant);
+					
+					auctionParticipantList = auctionParticipantService.listId(auction_item_id);
 					for(int i = 0; i < auctionParticipantList.size(); i++) {
+
 						Notification notific = new Notification(notification.getNotification_time(),
 									notification.getMessage(), auctionParticipantList.get(i).getParticipant(),
 									notification.getAuctionItem());
@@ -191,8 +199,6 @@ public class ParticipantController {
 						notificationService.save(notific);
 						
 					}
-					auctionItemService.save(auctionIt);
-					auctionParticipantService.registerObserver(auctionParticipant);
 					return "redirect:/participant/" + participant_id + "/auction/" + auction_item_id;
 				}
 	}

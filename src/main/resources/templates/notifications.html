@@ -47,16 +47,21 @@
 				<table class="table">
 			        <thead>
 			            <tr>
-			            	<th>Id</th>
+			            	<th>Auction Id</th>
 			                <th>Notification time</th>
 			                <th>Message</th>
+			                <th>Auction</th>
 			            </tr>
 			        </thead>
 			        <tbody>
-			            <tr th:each="notification : ${listNotification}" class = 'clickable_row' data-href='url://localhost/'>
-			            	<td th:text="${notification.auction.auction_item_id}">Auction id</td>
+			            <tr th:each="notification : ${listNotifications}" class = 'clickable_row' data-href='url://localhost/'>
+			            	<td th:text="${notification.auctionItem.auction_item_id}">Auction id</td>
 			                <td th:text="${notification.notification_time}">Notification time</td>
 			                <td th:text="${notification.message}">Message</td>
+			                <td>
+			                	<a th:href="@{'/participant/' + ${participant.participant_id} + '/auction/' + ${notification.auctionItem.auction_item_id}}" 
+			                   		class="btn btn-success">Go to auction</a>
+			                </td>
 			            </tr>
 			        </tbody>
    				 </table>

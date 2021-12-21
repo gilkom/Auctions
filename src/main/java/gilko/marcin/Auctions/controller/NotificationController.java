@@ -27,10 +27,6 @@ public class NotificationController {
 		List<Notification> listNotifications = notificationService.listByParticipantId(id);
 		Participant participant = participantService.get(id);
 		
-		for(int i = 0; i < listNotifications.size(); i++) {
-			System.out.println(listNotifications.get(i).getAuctionItem().getAuction_item_id());
-		}
-		
 		model.addAttribute("listNotifications", listNotifications);
 		model.addAttribute("participant", participant);
 		return "notifications";

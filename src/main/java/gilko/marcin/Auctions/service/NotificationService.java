@@ -36,8 +36,11 @@ public class NotificationService {
 	}
 	
 	public List<Notification> listByParticipantId(Long participant_id){
-		System.out.println("xxxrepo");
 		return repo.findByParticipant_id(participant_id);
+	}
+	
+	public List<Notification> auctionHistory(Long auction_id, Long owner){
+		return repo.findbyAuctionIdAndOwner(auction_id, owner);
 	}
 	
 

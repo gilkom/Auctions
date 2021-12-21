@@ -34,7 +34,7 @@
 			<div class = "container">
 				<ul class="nav nav-tabs">
 				<li role="presentation"><a th:href="@{'/participant/' + ${participant.participant_id}}">Home</a></li>
-				  <li role="presentation"><a href="#">Notifications</a></li>
+				  <li role="presentation"><a th:href="@{'/participant/' + ${participant.participant_id} + '/notifications'}">Notifications</a></li>
 				  <li role="presentation" class ="active"><a th:href="@{'/participant/' + ${participant.participant_id} + '/all_active_auctions'}">Active auctions</a></li>
 				  <li role="presentation"><a th:href="@{'/participant/' + ${participant.participant_id} + '/all_auctions'}">All auctions</a></li>
 				  <li role="presentation"><a th:href="@{'/participant/' + ${participant.participant_id} + '/my_auctions'}">My auctions</a></li>
